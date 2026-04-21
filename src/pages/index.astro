@@ -2,10 +2,318 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const SITE_TITLE = 'CC3PO - Triple Your Team\'s Output in 90 Days';
+const SITE_DESCRIPTION = 'Operational systems consulting that triples team productivity. We eliminate inefficiencies and build automated systems for 3X output without adding headcount.';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png';
 ---
 
-<Layout title="CC3PO - Triple Your Team's Output in 90 Days">
+<Layout title={SITE_TITLE}>
 	<Header />
+	
+	<style is:global>
+		/* Additional styles for SEO badges */
+		.hero-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 16px;
+			background: rgba(107,53,255,.1);
+			border: 1px solid rgba(107,53,255,.2);
+			border-radius: 24px;
+			font-size: 13px;
+			color: #a78bfa;
+			margin-bottom: 20px;
+			font-weight: 500;
+		}
+	</style>
+	
+	<style>
+		/* Page-specific overrides */
+		.hero-content {
+			text-align: center;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		.hero-content h1 {
+			font-size: clamp(36px, 6vw, 64px);
+			font-weight: 800;
+			line-height: 1.1;
+			margin-bottom: 20px;
+			background: linear-gradient(135deg, #fff, #a78bfa, #00d2ff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.hero-content p {
+			font-size: clamp(16px, 2vw, 20px);
+			color: #a1a1aa;
+			margin-bottom: 32px;
+		}
+		.hero-buttons {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 14px 28px;
+			border-radius: 28px;
+			text-decoration: none;
+			font-weight: 600;
+			transition: all 0.2s ease;
+		}
+		.btn-primary {
+			background: linear-gradient(135deg, #6b35ff, #00d2ff);
+			color: #fff;
+		}
+		.btn-primary:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(107,53,255,.4);
+		}
+		.btn-secondary {
+			background: rgba(255,255,255,.05);
+			border: 1px solid rgba(255,255,255,.1);
+			color: #fff;
+		}
+		.btn-secondary:hover {
+			background: rgba(255,255,255,.1);
+			border-color: rgba(107,53,255,.3);
+		}
+		.stats-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+			gap: 24px;
+			text-align: center;
+		}
+		.stat-item {
+			padding: 24px;
+		}
+		.stat-number {
+			font-size: 48px;
+			font-weight: 800;
+			background: linear-gradient(135deg, #6b35ff, #00d2ff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: 8px;
+		}
+		.stat-label {
+			font-size: 14px;
+			color: #a1a1aa;
+		}
+		.section {
+			padding: 80px 24px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.section-header {
+			text-align: center;
+			margin-bottom: 48px;
+		}
+		.section-header h2 {
+			font-size: clamp(28px, 4vw, 40px);
+			font-weight: 700;
+			margin-bottom: 12px;
+		}
+		.section-header p {
+			color: #a1a1aa;
+			font-size: 16px;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		.cards-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 20px;
+		}
+		.card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255,255,255,.06);
+			border-radius: 16px;
+			padding: 28px;
+			transition: all 0.3s ease;
+		}
+		.card:hover {
+			border-color: rgba(107,53,255,.2);
+			transform: translateY(-4px);
+		}
+		.card-icon {
+			font-size: 40px;
+			margin-bottom: 16px;
+		}
+		.card h3 {
+			font-size: 20px;
+			margin-bottom: 12px;
+		}
+		.card p {
+			color: #a1a1aa;
+			font-size: 14px;
+		}
+		.comparison-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 24px;
+		}
+		.comparison-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255,255,255,.06);
+			border-radius: 16px;
+			padding: 28px;
+		}
+		.comparison-card.before {
+			border-left: 4px solid #ef4444;
+		}
+		.comparison-card.after {
+			border-left: 4px solid #22c55e;
+		}
+		.comparison-card h3 {
+			font-size: 18px;
+			margin-bottom: 20px;
+		}
+		.comparison-card ul {
+			list-style: none;
+		}
+		.comparison-card li {
+			padding: 10px 0;
+			border-bottom: 1px solid rgba(255,255,255,.05);
+			font-size: 14px;
+			color: #a1a1aa;
+		}
+		.comparison-card li:last-child {
+			border-bottom: none;
+		}
+		.phase-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 24px;
+		}
+		.phase-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255,255,255,.06);
+			border-radius: 16px;
+			padding: 32px;
+			position: relative;
+		}
+		.phase-number {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			font-size: 48px;
+			font-weight: 800;
+			color: rgba(107,53,255,.1);
+		}
+		.phase-card h3 {
+			font-size: 24px;
+			margin-bottom: 8px;
+		}
+		.phase-card ul {
+			list-style: none;
+			margin-top: 16px;
+		}
+		.phase-card li {
+			padding: 8px 0;
+			font-size: 14px;
+			color: #a1a1aa;
+		}
+		.phase-card li::before {
+			content: '→';
+			color: #6b35ff;
+			margin-right: 8px;
+		}
+		.testimonial-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			gap: 20px;
+		}
+		.testimonial-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255,255,255,.06);
+			border-radius: 16px;
+			padding: 28px;
+		}
+		.testimonial-quote {
+			font-size: 15px;
+			color: #a1a1aa;
+			line-height: 1.7;
+			font-style: italic;
+			margin-bottom: 20px;
+		}
+		.testimonial-author {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+		.testimonial-avatar {
+			width: 44px;
+			height: 44px;
+			background: linear-gradient(135deg, #6b35ff, #00d2ff);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 700;
+			font-size: 16px;
+		}
+		.testimonial-info h4 {
+			font-size: 15px;
+			font-weight: 600;
+		}
+		.testimonial-info p {
+			font-size: 13px;
+			color: #71717a;
+		}
+		.cta-section {
+			background: linear-gradient(135deg, rgba(107,53,255,.1), rgba(0,210,255,.08));
+			border: 1px solid rgba(107,53,255,.15);
+			border-radius: 24px;
+			padding: 60px;
+			text-align: center;
+		}
+		.cta-section h2 {
+			font-size: clamp(24px, 4vw, 36px);
+			margin-bottom: 16px;
+		}
+		.cta-section p {
+			color: #a1a1aa;
+			margin-bottom: 32px;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.cta-buttons {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		@media (max-width: 768px) {
+			.hero-content h1 {
+				font-size: 32px;
+			}
+			.section {
+				padding: 60px 16px;
+			}
+			.cta-section {
+				padding: 40px 24px;
+			}
+			.hero-buttons {
+				flex-direction: column;
+			}
+			.btn {
+				width: 100%;
+				justify-content: center;
+			}
+		}
+	</style>
 	
 	<main>
 		<!-- Hero Section -->
