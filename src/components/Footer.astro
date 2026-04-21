@@ -1,0 +1,63 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+	company: [
+		{ label: 'About', href: 'https://cc3po.com' },
+		{ label: 'Services', href: 'https://offers.cc3po.com/our-services.html' },
+		{ label: 'Blog', href: 'https://insights.cc3po.com/blog' },
+	],
+	resources: [
+		{ label: 'Framework', href: '/framework' },
+		{ label: 'Case Studies', href: '/case-studies' },
+		{ label: '3X Audit', href: '/audit' },
+	],
+	connect: [
+		{ label: 'LinkedIn', href: 'https://linkedin.com/in/carloscabrales' },
+		{ label: 'Email', href: 'mailto:info@cc3po.com' },
+	],
+};
+---
+
+<footer>
+	<div class="container">
+		<div class="footer-content">
+			<div class="footer-brand">
+				<h3>CC3PO</h3>
+				<p>Client-Centered 3X Productivity Optimization</p>
+				<p style="margin-top: 16px; font-size: 13px;">We help organizations triple their output without burnout or added headcount.</p>
+			</div>
+			
+			<div class="footer-links">
+				<h4>Company</h4>
+				<ul>
+					{footerLinks.company.map((link) => (
+						<li><a href={link.href}>{link.label}</a></li>
+					))}
+				</ul>
+			</div>
+			
+			<div class="footer-links">
+				<h4>Resources</h4>
+				<ul>
+					{footerLinks.resources.map((link) => (
+						<li><a href={link.href}>{link.label}</a></li>
+					))}
+				</ul>
+			</div>
+			
+			<div class="footer-links">
+				<h4>Connect</h4>
+				<ul>
+					{footerLinks.connect.map((link) => (
+						<li><a href={link.href}>{link.label}</a></li>
+					))}
+				</ul>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<p>© {currentYear} CC3PO. All rights reserved. Building systems that scale.</p>
+		</div>
+	</div>
+</footer>

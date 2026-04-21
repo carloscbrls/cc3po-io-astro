@@ -1,0 +1,122 @@
+---
+const navItems = [
+	{ label: 'Framework', href: '/framework' },
+	{ label: 'Case Studies', href: '/case-studies' },
+	{ label: 'Start Audit', href: '/audit' },
+];
+---
+
+<header class="header">
+	<div class="container">
+		<nav class="nav">
+			<a href="/" class="logo">
+				<span class="logo-text">CC3PO</span>
+			</a>
+			
+			<div class="nav-links">
+				{navItems.map((item) => (
+					<a href={item.href} class="nav-link">{item.label}</a>
+				))}
+			</div>
+			
+			<a href="/audit" class="btn btn-primary nav-cta">
+				3X Audit →
+			</a>
+			
+			<button class="mobile-menu-btn" aria-label="Menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		background: rgba(10, 10, 11, 0.8);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		padding: 16px 0;
+	}
+	
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.logo {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+	}
+	
+	.logo-text {
+		font-size: 1.5rem;
+		font-weight: 800;
+		background: linear-gradient(135deg, #6b35ff, #00d2ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 32px;
+	}
+	
+	.nav-link {
+		color: #a1a1aa;
+		font-size: 15px;
+		font-weight: 500;
+		transition: color 0.2s;
+	}
+	
+	.nav-link:hover {
+		color: #fff;
+	}
+	
+	.nav-cta {
+		padding: 10px 24px;
+		font-size: 14px;
+	}
+	
+	.mobile-menu-btn {
+		display: none;
+		flex-direction: column;
+		gap: 6px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 8px;
+	}
+	
+	.mobile-menu-btn span {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: #fff;
+		transition: all 0.2s;
+	}
+	
+	@media (max-width: 768px) {
+		.nav-links {
+			display: none;
+		}
+		
+		.nav-cta {
+			display: none;
+		}
+		
+		.mobile-menu-btn {
+			display: flex;
+		}
+	}
+</style>

@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact - CC3PO">
+	<Header />
+	
+	<main>
+		<section class="hero" style="min-height: 50vh;">
+			<div class="container">
+				<div class="hero-content" style="max-width: 600px;">
+					<span class="hero-badge">Let's Talk</span>
+					<h1>Talk to Our Team</h1>
+					<p style="font-size: 1.25rem;">Ready to explore what 3X productivity could look like for your organization? Let's start the conversation.</p>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section" style="padding-top: 0;">
+			<div class="container">
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px;">
+					<!-- Contact Options -->
+					<div>
+						<h2 style="font-size: 1.5rem; margin-bottom: 24px;">Ways to Connect</h2>
+						
+						<div style="display: flex; flex-direction: column; gap: 24px;">
+							<a href="https://scheduler.zoom.us/carlos-cabrales-iii/3x-strategy-consultation" style="display: block; background: var(--card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; text-decoration: none;">
+								<div style="display: flex; align-items: center; gap: 16px;">
+									<div style="width: 48px; height: 48px; border-radius: 12px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 20px;">📅</div>
+									<div>
+										<h3 style="font-size: 1rem; margin: 0 0 4px 0; color: var(--text);">Schedule a Call</h3>
+										<p style="font-size: 14px; color: var(--muted); margin: 0;">Book a free 3X Strategy Consultation</p>
+									</div>
+								</div>
+							</a>
+							
+							<a href="mailto:info@cc3po.com" style="display: block; background: var(--card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; text-decoration: none;">
+								<div style="display: flex; align-items: center; gap: 16px;">
+									<div style="width: 48px; height: 48px; border-radius: 12px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 20px;">✉️</div>
+									<div>
+										<h3 style="font-size: 1rem; margin: 0 0 4px 0; color: var(--text);">Email Us</h3>
+										<p style="font-size: 14px; color: var(--muted); margin: 0;">info@cc3po.com</p>
+									</div>
+								</div>
+							</a>
+							
+							<a href="https://linkedin.com/in/carloscabrales" target="_blank" rel="noopener" style="display: block; background: var(--card); border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s; text-decoration: none;">
+								<div style="display: flex; align-items: center; gap: 16px;">
+									<div style="width: 48px; height: 48px; border-radius: 12px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 20px;">💼</div>
+									<div>
+										<h3 style="font-size: 1rem; margin: 0 0 4px 0; color: var(--text);">LinkedIn</h3>
+										<p style="font-size: 14px; color: var(--muted); margin: 0;">Connect with Carlos Cabrales</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<!-- Quick Actions -->
+					<div>
+						<h2 style="font-size: 1.5rem; margin-bottom: 24px;">Quick Actions</h2>
+						
+						<div style="display: flex; flex-direction: column; gap: 16px;">
+							<a href="/audit" class="btn btn-primary" style="justify-content: center;">Start 3X Productivity Audit →</a>
+							<a href="/framework" class="btn btn-secondary" style="justify-content: center;">Learn the Framework</a>
+							<a href="/case-studies" class="btn btn-secondary" style="justify-content: center;">See Case Studies</a>
+						</div>
+						
+						<div style="margin-top: 32px; padding: 24px; background: rgba(107, 53, 255, 0.1); border-radius: 12px;">
+							<h3 style="font-size: 1rem; margin-bottom: 12px;">About CC3PO</h3>
+							<p style="color: var(--muted); font-size: 14px; line-height: 1.7;">
+								CC3PO stands for <strong style="color: var(--text);">Client-Centered 3X Productivity Optimization</strong>. We help organizations triple their output without burnout or added headcount through systematic operational improvements.
+							</p>
+						</div>
+						
+						<div style="margin-top: 24px;">
+							<h4 style="font-size: 14px; color: var(--muted); margin-bottom: 8px;">Main Site</h4>
+							<a href="https://cc3po.com" style="color: var(--primary);">cc3po.com →</a>
+						</div>
+						
+						<div style="margin-top: 16px;">
+							<h4 style="font-size: 14px; color: var(--muted); margin-bottom: 8px;">Services</h4>
+							<a href="https://offers.cc3po.com/our-services.html" style="color: var(--primary);">offers.cc3po.com →</a>
+						</div>
+						
+						<div style="margin-top: 16px;">
+							<h4 style="font-size: 14px; color: var(--muted); margin-bottom: 8px;">Blog</h4>
+							<a href="https://insights.cc3po.com/blog" style="color: var(--primary);">insights.cc3po.com →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<Footer />
+</Layout>

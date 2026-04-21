@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="3X Productivity Audit - CC3PO">
+	<Header />
+	
+	<main>
+		<section class="hero" style="min-height: 60vh;">
+			<div class="container">
+				<div class="hero-content" style="max-width: 700px;">
+					<span class="hero-badge">Start Here</span>
+					<h1>3X Productivity Audit</h1>
+					<p style="font-size: 1.25rem;">We map your workflows, identify bottlenecks, and quantify the cost of current inefficiencies. Get clarity on exactly what's slowing your team down.</p>
+					<div class="hero-buttons" style="margin-top: 32px;">
+						<a href="https://scheduler.zoom.us/carlos-cabrales-iii/3x-strategy-consultation" class="btn btn-primary">Schedule Your Free Audit Call →</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- What You Get -->
+		<section class="section" style="background: var(--card);">
+			<div class="container">
+				<div class="section-header">
+					<h2>What You'll Walk Away With</h2>
+				</div>
+				
+				<div class="cards-grid">
+					<div class="card">
+						<div class="card-icon">🔍</div>
+						<h3>Complete Workflow Map</h3>
+						<p>Visual documentation of how work currently flows through your organization — and where it gets stuck.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon">💰</div>
+						<h3>Cost Analysis</h3>
+						<p>Exact numbers on how much inefficiency is costing you in time, money, and missed opportunities.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon">🎯</div>
+						<h3>Priority Action Plan</h3>
+						<p>Clear roadmap showing what to fix first, what it takes, and what results to expect.</p>
+					</div>
+					<div class="card">
+						<div class="card-icon">⚡</div>
+						<h3>Quick Wins Identified</h3>
+						<p>Immediate improvements you can implement this week to start seeing results fast.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- The Process -->
+		<section class="section">
+			<div class="container">
+				<div class="section-header">
+					<h2>How the Audit Works</h2>
+				</div>
+				
+				<div class="phase-grid">
+					<div class="phase-card">
+						<span class="phase-number">01</span>
+						<h3>Discovery Call</h3>
+						<p style="color: var(--muted); margin-bottom: 16px;">30-minute conversation to understand your team, goals, and current challenges.</p>
+						<ul>
+							<li>Team size and structure</li>
+							<li>Current pain points</li>
+							<li>Goals and timeline</li>
+						</ul>
+					</div>
+					<div class="phase-card">
+						<span class="phase-number">02</span>
+						<h3>Deep Dive Analysis</h3>
+						<p style="color: var(--muted); margin-bottom: 16px;">We review your processes, tools, and workflows — no judgment, just clarity.</p>
+						<ul>
+							<li>Process documentation review</li>
+							<li>Tool stack analysis</li>
+							<li>Bottleneck identification</li>
+						</ul>
+					</div>
+					<div class="phase-card">
+						<span class="phase-number">03</span>
+						<h3>Results & Roadmap</h3>
+						<p style="color: var(--muted); margin-bottom: 16px;">You get a clear report showing where you are and exactly what to do next.</p>
+						<ul>
+							<li>Full findings report</li>
+							<li>Priority action plan</li>
+							<li>Expected ROI outlined</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Who This Is For -->
+		<section class="section" style="background: var(--card);">
+			<div class="container">
+				<div class="section-header">
+					<h2>Is This Right for You?</h2>
+				</div>
+				
+				<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+					<div style="background: var(--bg); border-radius: 12px; padding: 24px; border: 1px solid rgba(255,255,255,0.05);">
+						<h4 style="color: #22c55e; margin-bottom: 16px;">✓ Great Fit If:</h4>
+						<ul style="list-style: none; padding: 0;">
+							<li style="color: var(--muted); padding: 8px 0;">Your team is busy but output isn't improving</li>
+							<li style="color: var(--muted); padding: 8px 0;">You know things are inefficient but don't know where to start</li>
+							<li style="color: var(--muted); padding: 8px 0;">You want to scale without adding headcount</li>
+							<li style="color: var(--muted); padding: 8px 0;">You're open to system-level changes</li>
+						</ul>
+					</div>
+					<div style="background: var(--bg); border-radius: 12px; padding: 24px; border: 1px solid rgba(255,255,255,0.05);">
+						<h4 style="color: #ef4444; margin-bottom: 16px;">✗ Not a Fit If:</h4>
+						<ul style="list-style: none; padding: 0;">
+							<li style="color: var(--muted); padding: 8px 0;">You want a quick fix without changing processes</li>
+							<li style="color: var(--muted); padding: 8px 0;">Your team is already running at peak efficiency</li>
+							<li style="color: var(--muted); padding: 8px 0;">You're not interested in measuring results</li>
+							<li style="color: var(--muted); padding: 8px 0;">You're looking for random tool recommendations</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- What Others Say -->
+		<section class="section">
+			<div class="container">
+				<div class="section-header">
+					<h2>What to Expect</h2>
+				</div>
+				
+				<div class="testimonial-grid">
+					<div class="testimonial-card">
+						<p class="testimonial-quote">"The audit revealed inefficiencies we didn't even know existed. Within 90 days, we had a clear path to 3X productivity."</p>
+						<div class="testimonial-author">
+							<div class="testimonial-avatar">SC</div>
+							<div class="testimonial-info">
+								<h4>Sarah Chen</h4>
+								<p>Executive Director</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-card">
+						<p class="testimonial-quote">"I was skeptical at first, but the structured approach and clear ROI made it obvious this was the right move."</p>
+						<div class="testimonial-author">
+							<div class="testimonial-avatar">MR</div>
+							<div class="testimonial-info">
+								<h4>Michael Rodriguez</h4>
+								<p>Operations Manager</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Final CTA -->
+		<section class="section">
+			<div class="container">
+				<div class="cta-section">
+					<h2>Ready to Find Out What's Slowing You Down?</h2>
+					<p>Schedule a free 30-minute discovery call. No pressure, no sales pitch — just clarity on your next steps.</p>
+					<div class="cta-buttons">
+						<a href="https://scheduler.zoom.us/carlos-cabrales-iii/3x-strategy-consultation" class="btn btn-primary">Schedule Your Free Audit Call →</a>
+						<a href="/case-studies" class="btn btn-secondary">See Case Studies</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<Footer />
+</Layout>
