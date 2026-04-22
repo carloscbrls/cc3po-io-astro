@@ -23,7 +23,7 @@ const navItems = [
 				3X Audit →
 			</a>
 			
-			<button class="mobile-menu-btn" aria-label="Menu">
+			<button class="mobile-toggle" id="nav-toggle" aria-label="Menu">
 				<span></span>
 				<span></span>
 				<span></span>
@@ -32,17 +32,30 @@ const navItems = [
 	</div>
 </header>
 
+<div class="mobile-menu" id="mobile-menu">
+	{navItems.map(item => (
+		<a href={item.href}>{item.label}</a>
+	))}
+	<a href="/audit" style="background: linear-gradient(135deg, #6b35ff, #00d2ff); color: #fff; text-align: center; border-radius: 8px; margin-top: 12px; padding: 14px;">3X Audit →</a>
+</div>
+
 <style>
 	.header {
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 100;
-		background: rgba(10, 10, 11, 0.8);
-		backdrop-filter: blur(12px);
+		z-index: 1000;
+		background: rgba(10, 10, 11, 0.9);
+		backdrop-filter: blur(20px);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		padding: 16px 0;
+	}
+	
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 24px;
 	}
 	
 	.nav {
@@ -88,7 +101,7 @@ const navItems = [
 		font-size: 14px;
 	}
 	
-	.mobile-menu-btn {
+	.mobile-toggle {
 		display: none;
 		flex-direction: column;
 		gap: 6px;
@@ -96,14 +109,47 @@ const navItems = [
 		border: none;
 		cursor: pointer;
 		padding: 8px;
+		position: absolute;
+		right: 16px;
 	}
 	
-	.mobile-menu-btn span {
+	.mobile-toggle span {
 		display: block;
 		width: 24px;
 		height: 2px;
 		background: #fff;
 		transition: all 0.2s;
+	}
+	
+	.mobile-menu {
+		display: none;
+		position: fixed;
+		top: 65px;
+		left: 0;
+		right: 0;
+		background: rgba(10, 10, 11, 0.98);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		padding: 20px;
+		flex-direction: column;
+		gap: 0;
+		z-index: 999;
+	}
+	
+	.mobile-menu.active {
+		display: flex;
+	}
+	
+	.mobile-menu a {
+		display: block;
+		padding: 14px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		color: #a1a1aa;
+		font-size: 16px;
+		text-decoration: none;
+	}
+	
+	.mobile-menu a:hover {
+		color: #fff;
 	}
 	
 	@media (max-width: 768px) {
@@ -115,8 +161,19 @@ const navItems = [
 			display: none;
 		}
 		
-		.mobile-menu-btn {
+		.mobile-toggle {
 			display: flex;
 		}
 	}
 </style>
+
+<script>
+	document.getElementById('nav-toggle')?.addEventListener('click', () => {
+		document.getElementById('mobile-menu')?.classList.toggle('active');
+	});
+	document.querySelectorAll('.mobile-menu a').forEach(link => {
+		link.addEventListener('click', () => {
+			document.getElementById('mobile-menu')?.classList.remove('active');
+		});
+	});
+</script>
