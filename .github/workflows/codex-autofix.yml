@@ -1,0 +1,39 @@
+name: Codex Auto-Fix
+on:
+  push:
+    branches: [main]
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run Codex Auto-Fix
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            Check this codebase for:
+            1. Security vulnerabilities (XSS, injection, exposed secrets)
+            2. Performance issues (large bundles, missing lazy loading)
+            3. Accessibility problems (missing ARIA, poor keyboard nav)
+            4. SEO issues (missing meta tags, broken heading hierarchy)
+            5. TypeScript errors or type safety issues
+            
+            Fix any issues you find. Do not change features or functionality.
+          safety-strategy: drop-sudo
+          sandbox: workspace-write
+          output-file: codex-fixes.md
+
+      - name: Commit fixes if any
+        run: |
+          if [[ -n $(git diff --stat) ]]; then
+            git config user.name "Codex Bot"
+            git config user.email "codex@cc3po.com"
+            git add -A
+            git commit -m "🤖 Auto-fix: security, performance, a11y, SEO"
+            git push
+          fi
