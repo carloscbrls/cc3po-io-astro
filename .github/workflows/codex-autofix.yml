@@ -1,39 +1,53 @@
-name: Codex Auto-Fix
+name: Codex Auto-Fix CI Failures
+
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  autofix:
+  auto-fix:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      FAILED_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+      FAILED_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.FAILED_HEAD_SHA }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i; fi
 
       - name: Run Codex Auto-Fix
         uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt: |
-            Check this codebase for:
-            1. Security vulnerabilities (XSS, injection, exposed secrets)
-            2. Performance issues (large bundles, missing lazy loading)
-            3. Accessibility problems (missing ARIA, poor keyboard nav)
-            4. SEO issues (missing meta tags, broken heading hierarchy)
-            5. TypeScript errors or type safety issues
-            
-            Fix any issues you find. Do not change features or functionality.
+          prompt: "Read the repository, run the test suite, identify the minimal change needed to make all tests pass, implement only that change, and stop. Do not refactor unrelated files."
           safety-strategy: drop-sudo
           sandbox: workspace-write
-          output-file: codex-fixes.md
+          model: gpt-5.5
 
-      - name: Commit fixes if any
-        run: |
-          if [[ -n $(git diff --stat) ]]; then
-            git config user.name "Codex Bot"
-            git config user.email "codex@cc3po.com"
-            git add -A
-            git commit -m "🤖 Auto-fix: security, performance, a11y, SEO"
-            git push
-          fi
+      - name: Verify tests pass
+        run: npm test --silent
+
+      - name: Create pull request
+        if: success()
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: codex/auto-fix-${{ github.event.workflow_run.run_id }}
+          base: ${{ env.FAILED_HEAD_BRANCH }}
+          title: "🤖 Auto-fix failing CI via Codex"
+          body: "Codex automatically identified and fixed the CI failure. Please review the changes."

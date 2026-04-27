@@ -1,0 +1,53 @@
+name: Codex Enhanced PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+
+      - name: Pre-fetch refs
+        run: |
+          git fetch --no-tags origin \
+            ${{ github.event.pull_request.base.ref }} \
+            +refs/pull/${{ github.event.pull_request.number }}/head
+
+      - name: Run CC3PO Security Audit
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: "Review this pull request for: 1) Security vulnerabilities (especially HIPAA/PHI handling) 2) Code quality and best practices 3) Performance issues 4) Accessibility concerns. Use the @cc3po-security-auditor agent expertise. Report findings as a structured review comment."
+          safety-strategy: drop-sudo
+          sandbox: read-only
+          model: gpt-5.5
+          output-file: codex-review.md
+
+      - name: Post review comment
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('fs');
+            let review = '';
+            try {
+              review = fs.readFileSync('codex-review.md', 'utf8');
+            } catch (e) {
+              review = 'Review completed but no output file found.';
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: `## 🤖 CC3PO Codex Review\n\n${review}`
+            });

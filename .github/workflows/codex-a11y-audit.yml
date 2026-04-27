@@ -1,0 +1,32 @@
+name: Weekly Accessibility Audit
+
+on:
+  schedule:
+    - cron: '0 6 * * 2'  # Every Tuesday 6 AM UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  a11y-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run Accessibility Audit
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/prompts/a11y-audit.md
+          safety-strategy: drop-sudo
+          sandbox: read-only
+          model: gpt-5.4-mini
+          output-file: a11y-audit-report.md
+
+      - name: Upload Audit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-audit-report
+          path: a11y-audit-report.md

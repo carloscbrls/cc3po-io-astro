@@ -1,0 +1,32 @@
+name: Weekly SEO Audit
+
+on:
+  schedule:
+    - cron: '0 6 * * 3'  # Every Wednesday 6 AM UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run SEO Audit
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/prompts/seo-audit.md
+          safety-strategy: drop-sudo
+          sandbox: read-only
+          model: gpt-5.4-mini
+          output-file: seo-audit-report.md
+
+      - name: Upload Audit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-report
+          path: seo-audit-report.md

@@ -1,0 +1,32 @@
+name: Weekly HIPAA Security Audit
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday 6 AM UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  hipaa-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run HIPAA Security Audit
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/prompts/hipaa-audit.md
+          safety-strategy: drop-sudo
+          sandbox: read-only
+          model: gpt-5.5
+          output-file: hipaa-audit-report.md
+
+      - name: Upload Audit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: hipaa-audit-report
+          path: hipaa-audit-report.md
