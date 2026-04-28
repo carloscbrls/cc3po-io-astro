@@ -1,9 +1,10 @@
 ---
 const navItems = [
-	{ label: 'Framework', href: '/framework' },
+	{ label: 'Dental IT', href: '/dental-it' },
+	{ label: 'Pricing', href: '/pricing' },
+	{ label: 'About', href: '/about' },
 	{ label: 'Case Studies', href: '/case-studies' },
-	{ label: 'Docs', href: 'https://docs.cc3po.com' },
-	{ label: 'Start Audit', href: '/audit' },
+	{ label: 'Contact', href: '/contact' },
 ];
 ---
 
@@ -20,8 +21,8 @@ const navItems = [
 				))}
 			</div>
 			
-			<a href="/audit" class="btn btn-primary nav-cta">
-				3X Audit →
+			<a href="/contact" class="btn btn-primary nav-cta">
+				Deploy Village →
 			</a>
 			
 			<button class="mobile-toggle" id="nav-toggle" aria-label="Menu">
@@ -37,7 +38,7 @@ const navItems = [
 	{navItems.map(item => (
 		<a href={item.href}>{item.label}</a>
 	))}
-	<a href="/audit" style="background: linear-gradient(135deg, #6b35ff, #00d2ff); color: #fff; text-align: center; border-radius: 8px; margin-top: 12px; padding: 14px;">3X Audit →</a>
+	<a href="/contact" style="background: linear-gradient(135deg, #6b35ff, #00d2ff); color: #fff; text-align: center; border-radius: 8px; margin-top: 12px; padding: 14px;">Deploy Village →</a>
 </div>
 
 <style>

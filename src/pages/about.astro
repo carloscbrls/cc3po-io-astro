@@ -1,0 +1,280 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About - CC3PO">
+	<Header />
+	
+	<style>
+		.page-hero {
+			min-height: 50vh;
+			display: flex;
+			align-items: center;
+			padding: 120px 24px 60px;
+		}
+		.page-hero-inner {
+			max-width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.page-hero-inner h1 {
+			font-size: clamp(32px, 5vw, 56px);
+			font-weight: 800;
+			line-height: 1.1;
+			margin-bottom: 20px;
+			background: linear-gradient(135deg, #fff 30%, #a78bfa 60%, #00d2ff 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.page-hero-inner p {
+			font-size: clamp(16px, 2vw, 20px);
+			color: #a1a1aa;
+			max-width: 640px;
+			margin: 0 auto;
+		}
+		.section {
+			padding: 80px 24px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.section-dark {
+			background: var(--card);
+		}
+		.section-header {
+			text-align: center;
+			margin-bottom: 48px;
+		}
+		.section-header h2 {
+			font-size: clamp(28px, 4vw, 40px);
+			font-weight: 700;
+			margin-bottom: 12px;
+		}
+		.section-header p {
+			color: #a1a1aa;
+			font-size: 16px;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		.story-content {
+			max-width: 720px;
+			margin: 0 auto;
+		}
+		.story-content p {
+			font-size: 16px;
+			line-height: 1.8;
+			color: #a1a1aa;
+			margin-bottom: 20px;
+		}
+		.story-content strong {
+			color: #fff;
+		}
+		.values-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 24px;
+		}
+		.value-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			padding: 36px;
+			transition: all 0.3s ease;
+		}
+		.value-card:hover {
+			border-color: rgba(107, 53, 255, 0.3);
+			transform: translateY(-4px);
+		}
+		.value-icon {
+			font-size: 36px;
+			margin-bottom: 16px;
+		}
+		.value-card h3 {
+			font-size: 20px;
+			margin-bottom: 12px;
+		}
+		.value-card p {
+			color: #a1a1aa;
+			font-size: 14px;
+			line-height: 1.7;
+		}
+		.team-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			padding: 48px;
+			max-width: 600px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.team-avatar {
+			width: 96px;
+			height: 96px;
+			border-radius: 50%;
+			background: var(--grad);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 36px;
+			font-weight: 800;
+			margin: 0 auto 20px;
+		}
+		.team-card h3 {
+			font-size: 24px;
+			margin-bottom: 6px;
+		}
+		.team-title {
+			color: var(--accent);
+			font-size: 14px;
+			margin-bottom: 16px;
+		}
+		.team-card p {
+			color: #a1a1aa;
+			font-size: 15px;
+			line-height: 1.7;
+		}
+		.team-links {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			margin-top: 20px;
+		}
+		.team-links a {
+			color: var(--primary);
+			font-size: 14px;
+			font-weight: 600;
+		}
+		.stats-row {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+			gap: 24px;
+			margin-top: 48px;
+		}
+		.about-stat {
+			text-align: center;
+			padding: 24px;
+			background: rgba(107, 53, 255, 0.06);
+			border-radius: 16px;
+			border: 1px solid rgba(107, 53, 255, 0.12);
+		}
+		.about-stat-number {
+			font-size: 36px;
+			font-weight: 800;
+			background: var(--grad);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: 4px;
+		}
+		.about-stat-label {
+			font-size: 13px;
+			color: #a1a1aa;
+		}
+		@media (max-width: 768px) {
+			.page-hero {
+				padding: 100px 16px 40px;
+			}
+			.section {
+				padding: 60px 16px;
+			}
+		}
+	</style>
+	
+	<main>
+		<section class="page-hero">
+			<div class="page-hero-inner">
+				<span class="hero-badge">About Us</span>
+				<h1>Building the Future of Dental IT</h1>
+				<p>CC3PO stands for Client-Centered 3X Productivity Optimization. We combine AI agents with managed IT to help dental practices thrive.</p>
+			</div>
+		</section>
+		
+		<section class="section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Our Story</h2>
+				</div>
+				<div class="story-content">
+					<p>CC3PO started from a simple observation: <strong>dental practices are drowning in manual work</strong>. Front desks juggle scheduling, billing, insurance verification, and patient communications while the practice management software barely scratches the surface of what's possible.</p>
+					<p>We built the <strong>AI Agent Village</strong> — Hermes, Atlas, and Prometheus — to do the work humans shouldn't have to. Each agent specializes in a domain: lead generation, data analytics, and operational automation. Together, they create a system that runs 24/7, continuously improving.</p>
+					<p>Combined with our <strong>HIPAA-compliant managed IT services</strong>, we give dental practices a complete technology partner. From cybersecurity to cloud infrastructure to AI automation, everything is designed for one outcome: <strong>3X productivity without adding headcount</strong>.</p>
+				</div>
+				
+				<div class="stats-row">
+					<div class="about-stat">
+						<div class="about-stat-number">3X</div>
+						<div class="about-stat-label">Average Productivity Gain</div>
+					</div>
+					<div class="about-stat">
+						<div class="about-stat-number">50+</div>
+						<div class="about-stat-label">Organizations Served</div>
+					</div>
+					<div class="about-stat">
+						<div class="about-stat-number">99.9%</div>
+						<div class="about-stat-label">Agent Uptime</div>
+					</div>
+					<div class="about-stat">
+						<div class="about-stat-number">90</div>
+						<div class="about-stat-label">Days to Impact</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section-dark">
+			<div class="section" style="padding-top: 80px; padding-bottom: 80px;">
+				<div class="container">
+					<div class="section-header">
+						<h2>Our Values</h2>
+					</div>
+					
+					<div class="values-grid">
+						<div class="value-card">
+							<div class="value-icon">&#x1F3AF;</div>
+							<h3>Client-Centered</h3>
+							<p>Every decision starts with the client. We measure success by the outcomes we deliver, not the hours we bill.</p>
+						</div>
+						<div class="value-card">
+							<div class="value-icon">&#x26A1;</div>
+							<h3>Systems Over People</h3>
+							<p>We build systems that work regardless of who's at the desk. Consistency comes from process, not from heroics.</p>
+						</div>
+						<div class="value-card">
+							<div class="value-icon">&#x1F4C8;</div>
+							<h3>Compound Growth</h3>
+							<p>Small improvements that compound over time beat one-time fixes. We optimize for trajectory, not snapshots.</p>
+						</div>
+						<div class="value-card">
+							<div class="value-icon">&#x1F50D;</div>
+							<h3>Radical Transparency</h3>
+							<p>You see everything we see. Real-time dashboards, open reporting, and no black boxes. Trust is built through visibility.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Leadership</h2>
+				</div>
+				
+				<div class="team-card">
+					<div class="team-avatar">CC</div>
+					<h3>Carlos Cabrales</h3>
+					<p class="team-title">Founder & CEO</p>
+					<p>Operations strategist turned AI infrastructure builder. Carlos has spent his career helping organizations eliminate inefficiency and scale through technology. He founded CC3PO to bring enterprise-grade automation to dental practices.</p>
+					<div class="team-links">
+						<a href="https://linkedin.com/in/carloscabrales" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+						<a href="mailto:carlos@cc3po.com">Email &rarr;</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<Footer />
+</Layout>

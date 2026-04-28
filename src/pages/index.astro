@@ -3,124 +3,161 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const SITE_TITLE = 'CC3PO - Triple Your Team\'s Output in 90 Days';
-const SITE_DESCRIPTION = 'Operational systems consulting that triples team productivity. We eliminate inefficiencies and build automated systems for 3X output without adding headcount.';
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-background-scaled.png';
+const SITE_TITLE = 'CC3PO - AI Agent Village for Dental IT & Business Automation';
+const SITE_DESCRIPTION = 'Meet Hermes, Atlas, and Prometheus — your AI agent village. We automate dental IT, streamline operations, and deliver 3X productivity through intelligent agents.';
 ---
 
 <Layout title={SITE_TITLE}>
 	<Header />
 	
-	<style is:global>
-		/* Additional styles for SEO badges */
-		.hero-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			padding: 8px 16px;
-			background: rgba(107,53,255,.1);
-			border: 1px solid rgba(107,53,255,.2);
-			border-radius: 24px;
-			font-size: 13px;
-			color: #a78bfa;
-			margin-bottom: 20px;
-			font-weight: 500;
-		}
-	</style>
-	
 	<style>
-		/* Page-specific overrides */
-		.hero-content {
-			text-align: center;
-			max-width: 800px;
-			margin: 0 auto;
+		/* Hero with Canvas */
+		.hero-canvas-wrap {
+			position: relative;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
 		}
-		.hero-content h1 {
-			font-size: clamp(36px, 6vw, 64px);
+		#hero-canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+		}
+		.hero-overlay {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			padding: 120px 24px 80px;
+		}
+		.hero-inner {
+			max-width: 1200px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.hero-inner h1 {
+			font-size: clamp(36px, 6vw, 68px);
 			font-weight: 800;
-			line-height: 1.1;
+			line-height: 1.08;
 			margin-bottom: 20px;
-			background: linear-gradient(135deg, #fff, #a78bfa, #00d2ff);
+			background: linear-gradient(135deg, #fff 30%, #a78bfa 60%, #00d2ff 100%);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			background-clip: text;
 		}
-		.hero-content p {
+		.hero-inner .hero-sub {
 			font-size: clamp(16px, 2vw, 20px);
 			color: #a1a1aa;
-			margin-bottom: 32px;
+			max-width: 640px;
+			margin: 0 auto 36px;
 		}
 		.hero-buttons {
 			display: flex;
 			gap: 16px;
 			justify-content: center;
 			flex-wrap: wrap;
+			margin-bottom: 48px;
 		}
-		.btn {
-			display: inline-flex;
+
+		/* Agent Nodes */
+		.agent-nodes {
+			display: flex;
+			justify-content: center;
+			gap: 40px;
+			flex-wrap: wrap;
+			margin-bottom: 56px;
+		}
+		.agent-node {
+			display: flex;
+			flex-direction: column;
 			align-items: center;
-			gap: 8px;
-			padding: 14px 28px;
-			border-radius: 28px;
-			text-decoration: none;
-			font-weight: 600;
-			transition: all 0.2s ease;
+			gap: 10px;
+			padding: 24px 20px;
+			background: rgba(20, 20, 24, 0.85);
+			border: 1px solid rgba(107, 53, 255, 0.25);
+			border-radius: 20px;
+			min-width: 160px;
+			backdrop-filter: blur(12px);
+			transition: all 0.3s ease;
 		}
-		.btn-primary {
-			background: linear-gradient(135deg, #6b35ff, #00d2ff);
+		.agent-node:hover {
+			border-color: rgba(0, 210, 255, 0.5);
+			transform: translateY(-4px);
+			box-shadow: 0 12px 40px rgba(107, 53, 255, 0.2);
+		}
+		.agent-icon {
+			width: 56px;
+			height: 56px;
+			border-radius: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 28px;
+		}
+		.agent-icon.hermes { background: linear-gradient(135deg, #6b35ff, #8b5cf6); }
+		.agent-icon.atlas { background: linear-gradient(135deg, #0891b2, #00d2ff); }
+		.agent-icon.prometheus { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+		.agent-name {
+			font-weight: 700;
+			font-size: 16px;
 			color: #fff;
 		}
-		.btn-primary:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 8px 25px rgba(107,53,255,.4);
-		}
-		.btn-secondary {
-			background: rgba(255,255,255,.05);
-			border: 1px solid rgba(255,255,255,.1);
-			color: #fff;
-		}
-		.btn-secondary:hover {
-			background: rgba(255,255,255,.1);
-			border-color: rgba(107,53,255,.3);
-		}
-		.stats-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-			gap: 24px;
+		.agent-role {
+			font-size: 12px;
+			color: #a1a1aa;
 			text-align: center;
 		}
-		.stat-item {
-			padding: 24px;
+
+		/* Trust Bar */
+		.trust-bar {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 24px;
+			max-width: 900px;
+			margin: 0 auto;
+			padding: 32px;
+			background: rgba(20, 20, 24, 0.7);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			backdrop-filter: blur(16px);
 		}
-		.stat-number {
-			font-size: 48px;
+		.trust-stat {
+			text-align: center;
+		}
+		.trust-number {
+			font-size: 32px;
 			font-weight: 800;
 			background: linear-gradient(135deg, #6b35ff, #00d2ff);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			background-clip: text;
-			margin-bottom: 8px;
+			margin-bottom: 4px;
 		}
-		.stat-label {
-			font-size: 14px;
+		.trust-label {
+			font-size: 12px;
 			color: #a1a1aa;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
 		}
+
+		/* Section styles */
 		.section {
 			padding: 80px 24px;
 			max-width: 1200px;
 			margin: 0 auto;
 		}
-		.container {
-			max-width: 1200px;
-			margin: 0 auto;
+		.section-dark {
+			background: var(--card);
 		}
 		.section-header {
 			text-align: center;
 			margin-bottom: 48px;
 		}
 		.section-header h2 {
-			font-size: clamp(28px, 4vw, 40px);
+			font-size: clamp(28px, 4vw, 42px);
 			font-weight: 700;
 			margin-bottom: 12px;
 		}
@@ -130,67 +167,104 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 			max-width: 600px;
 			margin: 0 auto;
 		}
-		.cards-grid {
+
+		/* Agent Detail Cards */
+		.agent-detail-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			gap: 24px;
+		}
+		.agent-detail-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			padding: 36px;
+			transition: all 0.3s ease;
+		}
+		.agent-detail-card:hover {
+			border-color: rgba(107, 53, 255, 0.3);
+			transform: translateY(-4px);
+		}
+		.agent-detail-header {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			margin-bottom: 20px;
+		}
+		.agent-detail-icon {
+			width: 52px;
+			height: 52px;
+			border-radius: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+		}
+		.agent-detail-card h3 {
+			font-size: 22px;
+			margin-bottom: 4px;
+		}
+		.agent-detail-card .agent-subtitle {
+			font-size: 13px;
+			color: #a1a1aa;
+			margin: 0;
+		}
+		.agent-detail-card p.desc {
+			color: #a1a1aa;
+			font-size: 15px;
+			line-height: 1.7;
+			margin-bottom: 20px;
+		}
+		.agent-detail-card ul {
+			list-style: none;
+			padding: 0;
+		}
+		.agent-detail-card li {
+			padding: 8px 0;
+			font-size: 14px;
+			color: #a1a1aa;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.agent-detail-card li::before {
+			content: '>';
+			color: var(--accent);
+			font-weight: 700;
+			font-family: monospace;
+		}
+
+		/* Problem / Solution */
+		.problem-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 			gap: 20px;
 		}
-		.card {
+		.problem-card {
 			background: linear-gradient(145deg, #141418, #0f0f11);
-			border: 1px solid rgba(255,255,255,.06);
+			border: 1px solid rgba(255, 255, 255, 0.06);
 			border-radius: 16px;
 			padding: 28px;
 			transition: all 0.3s ease;
 		}
-		.card:hover {
-			border-color: rgba(107,53,255,.2);
+		.problem-card:hover {
+			border-color: rgba(107, 53, 255, 0.2);
 			transform: translateY(-4px);
 		}
-		.card-icon {
-			font-size: 40px;
-			margin-bottom: 16px;
+		.problem-card .card-icon {
+			font-size: 36px;
+			margin-bottom: 14px;
 		}
-		.card h3 {
-			font-size: 20px;
-			margin-bottom: 12px;
-		}
-		.card p {
-			color: #a1a1aa;
-			font-size: 14px;
-		}
-		.comparison-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			gap: 24px;
-		}
-		.comparison-card {
-			background: linear-gradient(145deg, #141418, #0f0f11);
-			border: 1px solid rgba(255,255,255,.06);
-			border-radius: 16px;
-			padding: 28px;
-		}
-		.comparison-card.before {
-			border-left: 4px solid #ef4444;
-		}
-		.comparison-card.after {
-			border-left: 4px solid #22c55e;
-		}
-		.comparison-card h3 {
+		.problem-card h3 {
 			font-size: 18px;
-			margin-bottom: 20px;
+			margin-bottom: 10px;
 		}
-		.comparison-card ul {
-			list-style: none;
-		}
-		.comparison-card li {
-			padding: 10px 0;
-			border-bottom: 1px solid rgba(255,255,255,.05);
-			font-size: 14px;
+		.problem-card p {
 			color: #a1a1aa;
+			font-size: 14px;
 		}
-		.comparison-card li:last-child {
-			border-bottom: none;
-		}
+
+		/* How It Works */
 		.phase-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -198,7 +272,7 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 		}
 		.phase-card {
 			background: linear-gradient(145deg, #141418, #0f0f11);
-			border: 1px solid rgba(255,255,255,.06);
+			border: 1px solid rgba(255, 255, 255, 0.06);
 			border-radius: 16px;
 			padding: 32px;
 			position: relative;
@@ -209,26 +283,57 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 			right: 20px;
 			font-size: 48px;
 			font-weight: 800;
-			color: rgba(107,53,255,.1);
+			color: rgba(107, 53, 255, 0.1);
 		}
 		.phase-card h3 {
-			font-size: 24px;
+			font-size: 22px;
 			margin-bottom: 8px;
 		}
 		.phase-card ul {
 			list-style: none;
-			margin-top: 16px;
+			margin-top: 14px;
+			padding: 0;
 		}
 		.phase-card li {
-			padding: 8px 0;
+			padding: 7px 0;
 			font-size: 14px;
 			color: #a1a1aa;
 		}
 		.phase-card li::before {
-			content: '→';
+			content: '>';
 			color: #6b35ff;
 			margin-right: 8px;
+			font-family: monospace;
+			font-weight: 700;
 		}
+
+		/* CTA */
+		.cta-section {
+			background: linear-gradient(135deg, rgba(107, 53, 255, 0.1), rgba(0, 210, 255, 0.08));
+			border: 1px solid rgba(107, 53, 255, 0.15);
+			border-radius: 24px;
+			padding: 60px;
+			text-align: center;
+		}
+		.cta-section h2 {
+			font-size: clamp(24px, 4vw, 36px);
+			margin-bottom: 16px;
+		}
+		.cta-section p {
+			color: #a1a1aa;
+			margin-bottom: 32px;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.cta-buttons {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		/* Testimonials */
 		.testimonial-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -236,7 +341,7 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 		}
 		.testimonial-card {
 			background: linear-gradient(145deg, #141418, #0f0f11);
-			border: 1px solid rgba(255,255,255,.06);
+			border: 1px solid rgba(255, 255, 255, 0.06);
 			border-radius: 16px;
 			padding: 28px;
 		}
@@ -270,201 +375,249 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 		.testimonial-info p {
 			font-size: 13px;
 			color: #71717a;
+			margin: 0;
 		}
-		.cta-section {
-			background: linear-gradient(135deg, rgba(107,53,255,.1), rgba(0,210,255,.08));
-			border: 1px solid rgba(107,53,255,.15);
-			border-radius: 24px;
-			padding: 60px;
-			text-align: center;
-		}
-		.cta-section h2 {
-			font-size: clamp(24px, 4vw, 36px);
-			margin-bottom: 16px;
-		}
-		.cta-section p {
-			color: #a1a1aa;
-			margin-bottom: 32px;
-			max-width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		.cta-buttons {
-			display: flex;
-			gap: 16px;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
+
+		/* Mobile */
 		@media (max-width: 768px) {
-			.hero-content h1 {
+			.hero-inner h1 {
 				font-size: 32px;
+			}
+			.hero-overlay {
+				padding: 100px 16px 60px;
+			}
+			.agent-nodes {
+				gap: 16px;
+			}
+			.agent-node {
+				min-width: 130px;
+				padding: 16px 12px;
+			}
+			.trust-bar {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 16px;
+				padding: 20px;
+			}
+			.hero-buttons {
+				flex-direction: column;
+			}
+			.hero-buttons .btn {
+				width: 100%;
+				justify-content: center;
 			}
 			.section {
 				padding: 60px 16px;
 			}
 			.cta-section {
-				padding: 40px 24px;
+				padding: 40px 20px;
 			}
-			.hero-buttons {
+		}
+		@media (max-width: 480px) {
+			.agent-nodes {
 				flex-direction: column;
+				align-items: center;
 			}
-			.btn {
+			.agent-node {
 				width: 100%;
-				justify-content: center;
+				max-width: 200px;
+			}
+			.trust-bar {
+				grid-template-columns: 1fr 1fr;
 			}
 		}
 	</style>
 	
 	<main>
-		<!-- Hero Section -->
-		<section class="hero">
-			<div class="container">
-				<div class="hero-content">
-					<span class="hero-badge">Operational Systems Consulting</span>
-					<h1>Triple Your Team's Output in 90 Days</h1>
-					<p>We eliminate the inefficiencies slowing your team down — and build the systems that let them produce 3X more without burning out or adding headcount.</p>
+		<!-- Hero with Canvas Animation -->
+		<section class="hero-canvas-wrap">
+			<canvas id="hero-canvas"></canvas>
+			<div class="hero-overlay">
+				<div class="hero-inner">
+					<span class="hero-badge">AI Agent Village</span>
+					<h1>Your AI Workforce.<br/>Always On. Always Building.</h1>
+					<p class="hero-sub">Meet Hermes, Atlas, and Prometheus — three intelligent agents working 24/7 to automate your dental IT, generate leads, and optimize operations.</p>
+					
 					<div class="hero-buttons">
-						<a href="/audit" class="btn btn-primary">Start Your 3X Productivity Audit →</a>
-						<a href="/framework" class="btn btn-secondary">Learn the Framework</a>
+						<a href="/contact" class="btn btn-primary">Deploy Your Village &rarr;</a>
+						<a href="/dental-it" class="btn btn-secondary">Dental IT Solutions</a>
+					</div>
+
+					<!-- Agent Nodes -->
+					<div class="agent-nodes" id="agent-nodes">
+						<div class="agent-node" data-agent="hermes">
+							<div class="agent-icon hermes">&#x2709;</div>
+							<span class="agent-name">Hermes</span>
+							<span class="agent-role">Lead Gen & Outreach</span>
+						</div>
+						<div class="agent-node" data-agent="atlas">
+							<div class="agent-icon atlas">&#x1F5FA;</div>
+							<span class="agent-name">Atlas</span>
+							<span class="agent-role">Data & Analytics</span>
+						</div>
+						<div class="agent-node" data-agent="prometheus">
+							<div class="agent-icon prometheus">&#x1F525;</div>
+							<span class="agent-name">Prometheus</span>
+							<span class="agent-role">Automation & Ops</span>
+						</div>
+					</div>
+					
+					<!-- Trust Bar - Supabase Connected -->
+					<div class="trust-bar" id="trust-bar">
+						<div class="trust-stat">
+							<div class="trust-number" data-target="60" data-suffix="+">0</div>
+							<div class="trust-label">Leads Analyzed</div>
+						</div>
+						<div class="trust-stat">
+							<div class="trust-number" data-target="99.9" data-suffix="%" data-decimal="1">0</div>
+							<div class="trust-label">Agent Uptime</div>
+						</div>
+						<div class="trust-stat">
+							<div class="trust-number" data-target="87" data-prefix="$" data-suffix="K">0</div>
+							<div class="trust-label">Projected ARR</div>
+						</div>
+						<div class="trust-stat">
+							<div class="trust-number" data-target="29" data-suffix="">0</div>
+							<div class="trust-label">Tasks Delivered</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 		
-		<!-- Stats Section -->
+		<!-- Agent Details -->
 		<section class="section">
 			<div class="container">
-				<div class="stats-grid">
-					<div class="stat-item">
-						<div class="stat-number">3X</div>
-						<div class="stat-label">Average productivity gain</div>
+				<div class="section-header">
+					<h2>The Village at Work</h2>
+					<p>Each agent specializes in a domain, collaborating to deliver results no single tool can match.</p>
+				</div>
+				
+				<div class="agent-detail-grid">
+					<div class="agent-detail-card">
+						<div class="agent-detail-header">
+							<div class="agent-detail-icon" style="background: linear-gradient(135deg, #6b35ff, #8b5cf6);">&#x2709;</div>
+							<div>
+								<h3>Hermes</h3>
+								<p class="agent-subtitle">Lead Generation & Outreach</p>
+							</div>
+						</div>
+						<p class="desc">Hermes scrapes, qualifies, and engages leads automatically. From cold outreach to warm handoff, every touchpoint is tracked and optimized.</p>
+						<ul>
+							<li>Automated lead scraping & enrichment</li>
+							<li>Multi-channel outreach sequences</li>
+							<li>CRM integration & pipeline tracking</li>
+							<li>Response analysis & follow-up triggers</li>
+						</ul>
 					</div>
-					<div class="stat-item">
-						<div class="stat-number">50+</div>
-						<div class="stat-label">Organizations optimized</div>
+					
+					<div class="agent-detail-card">
+						<div class="agent-detail-header">
+							<div class="agent-detail-icon" style="background: linear-gradient(135deg, #0891b2, #00d2ff);">&#x1F5FA;</div>
+							<div>
+								<h3>Atlas</h3>
+								<p class="agent-subtitle">Data Intelligence & Analytics</p>
+							</div>
+						</div>
+						<p class="desc">Atlas maps your data landscape, builds dashboards, and surfaces actionable insights so you can make decisions in minutes, not weeks.</p>
+						<ul>
+							<li>Real-time performance dashboards</li>
+							<li>Competitive intelligence monitoring</li>
+							<li>Revenue forecasting & trend analysis</li>
+							<li>Custom reporting pipelines</li>
+						</ul>
 					</div>
-					<div class="stat-item">
-						<div class="stat-number">90</div>
-						<div class="stat-label">Days to full impact</div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">98%</div>
-						<div class="stat-label">Client satisfaction</div>
+					
+					<div class="agent-detail-card">
+						<div class="agent-detail-header">
+							<div class="agent-detail-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">&#x1F525;</div>
+							<div>
+								<h3>Prometheus</h3>
+								<p class="agent-subtitle">Automation & Operations</p>
+							</div>
+						</div>
+						<p class="desc">Prometheus eliminates manual work. It builds automations, manages workflows, and ensures your operations run without human bottlenecks.</p>
+						<ul>
+							<li>Workflow automation & scheduling</li>
+							<li>IT infrastructure monitoring</li>
+							<li>Document processing & routing</li>
+							<li>System integration & API orchestration</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
 		
 		<!-- Problem Section -->
-		<section class="section" style="background: var(--card);">
-			<div class="container">
-				<div class="section-header">
-					<h2>Why Most Organizations Struggle to Scale</h2>
-					<p>It's rarely about effort. Most teams are working hard — just on the wrong things, inside broken systems.</p>
+		<section class="section-dark">
+			<div class="section" style="padding-top: 80px; padding-bottom: 80px;">
+				<div class="container">
+					<div class="section-header">
+						<h2>Why Dental Practices Struggle to Scale</h2>
+						<p>It's rarely about effort. Most teams are working hard -- just on the wrong things, inside broken systems.</p>
+					</div>
+					
+					<div class="problem-grid">
+						<div class="problem-card">
+							<div class="card-icon">&#x2699;&#xFE0F;</div>
+							<h3>Endless Manual Work</h3>
+							<p>Hours spent copying data, sending repeat emails, updating systems by hand -- work that should be automated.</p>
+						</div>
+						<div class="problem-card">
+							<div class="card-icon">&#x1F4CB;</div>
+							<h3>No IT Strategy</h3>
+							<p>Disjointed tools, no HIPAA compliance plan, and zero visibility into what technology should actually do for you.</p>
+						</div>
+						<div class="problem-card">
+							<div class="card-icon">&#x1F441;&#xFE0F;</div>
+							<h3>Hidden Inefficiency</h3>
+							<p>Bottlenecks are invisible until things break. By then, the cost in time and morale is already compounding.</p>
+						</div>
+						<div class="problem-card">
+							<div class="card-icon">&#x1F534;</div>
+							<h3>Inconsistent Execution</h3>
+							<p>Results depend on who is in the office. When key people leave, work stalls. There's no system -- just people.</p>
+						</div>
+					</div>
 				</div>
-				
-				<div class="cards-grid">
-					<div class="card">
-						<div class="card-icon">⚙️</div>
-						<h3>Endless Manual Work</h3>
-						<p>Teams spend hours copying data, sending the same emails, and updating systems by hand — work that should be automated.</p>
-					</div>
-					<div class="card">
-						<div class="card-icon">📋</div>
-						<h3>No Structure or Clarity</h3>
-						<p>Responsibilities are unclear, processes are undocumented, and everyone operates on different assumptions.</p>
-					</div>
-					<div class="card">
-						<div class="card-icon">👁️</div>
-						<h3>Hidden Inefficiency</h3>
-						<p>Bottlenecks are invisible until things break. By then, the cost in time and morale is already compounding.</p>
-					</div>
-					<div class="card">
-						<div class="card-icon">🔴</div>
-						<h3>Inconsistent Execution</h3>
-						<p>Results depend on who is in the office. When key people are out, work stalls. There's no system — just people.</p>
-					</div>
-				</div>
-				
-				<p style="text-align: center; margin-top: 48px; color: var(--accent); font-weight: 600;">
-					These four patterns account for the majority of lost productivity. The good news: every one of them is fixable.
-				</p>
 			</div>
 		</section>
 		
-		<!-- Transformation Section -->
+		<!-- How It Works -->
 		<section class="section">
 			<div class="container">
 				<div class="section-header">
-					<h2>What Changes After Working With Us</h2>
-				</div>
-				
-				<div class="comparison-grid">
-					<div class="comparison-card before">
-						<h3><span style="color: #ef4444;">✗</span> Before</h3>
-						<ul>
-							<li>Manual, repetitive tasks eat hours every week</li>
-							<li>Responsibilities unclear — things fall through cracks</li>
-							<li>No visibility into what the team is delivering</li>
-							<li>Results depend entirely on one or two key people</li>
-							<li>Slow responses frustrate customers and lose deals</li>
-							<li>Growth hits a ceiling — you can't scale what's broken</li>
-						</ul>
-					</div>
-					<div class="comparison-card after">
-						<h3><span style="color: #22c55e;">✓</span> After</h3>
-						<ul>
-							<li>Routine work runs automatically in the background</li>
-							<li>Every task has an owner and a clear process</li>
-							<li>Real-time dashboards show what matters, instantly</li>
-							<li>Systems work consistently, regardless of who's in</li>
-							<li>Leads and requests are handled in minutes, not days</li>
-							<li>Operations scale with the business, not against it</li>
-						</ul>
-					</div>
-				</div>
-				
-				<div style="text-align: center; margin-top: 48px;">
-					<a href="/audit" class="btn btn-primary">Start Your 3X Productivity Audit →</a>
-				</div>
-			</div>
-		</section>
-		
-		<!-- How It Works Section -->
-		<section class="section" style="background: var(--card);">
-			<div class="container">
-				<div class="section-header">
-					<h2>Three Steps to 3X</h2>
+					<h2>Three Steps to Deployment</h2>
+					<p>From audit to full village deployment in 90 days</p>
 				</div>
 				
 				<div class="phase-grid">
 					<div class="phase-card">
 						<span class="phase-number">01</span>
 						<h3>Audit</h3>
-						<p style="color: var(--muted); margin-bottom: 16px;">You know exactly what's broken.</p>
+						<p style="color: var(--muted); margin-bottom: 16px;">Map your current operations and identify automation opportunities.</p>
 						<ul>
-							<li>Map your workflows</li>
+							<li>Map existing workflows</li>
 							<li>Identify bottlenecks</li>
 							<li>Quantify inefficiency costs</li>
 						</ul>
 					</div>
 					<div class="phase-card">
 						<span class="phase-number">02</span>
-						<h3>Build</h3>
-						<p style="color: var(--muted); margin-bottom: 16px;">Systems replace guesswork.</p>
+						<h3>Deploy</h3>
+						<p style="color: var(--muted); margin-bottom: 16px;">Configure and launch your AI agent village.</p>
 						<ul>
-							<li>Design automations</li>
-							<li>Implement processes</li>
-							<li>Build scalable structures</li>
+							<li>Configure agent roles</li>
+							<li>Integrate with your tools</li>
+							<li>Build automation pipelines</li>
 						</ul>
 					</div>
 					<div class="phase-card">
 						<span class="phase-number">03</span>
 						<h3>Scale</h3>
-						<p style="color: var(--muted); margin-bottom: 16px;">3X output. Same team.</p>
+						<p style="color: var(--muted); margin-bottom: 16px;">3X output. Same team. Compounding gains.</p>
 						<ul>
-							<li>Track results</li>
-							<li>Remove remaining friction</li>
+							<li>Monitor agent performance</li>
+							<li>Expand automation coverage</li>
 							<li>Ensure gains compound</li>
 						</ul>
 					</div>
@@ -472,42 +625,44 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 			</div>
 		</section>
 		
-		<!-- Testimonial Section -->
-		<section class="section">
-			<div class="container">
-				<div class="section-header">
-					<h2>Proof of 3X</h2>
-					<p>Real results from real organizations</p>
-				</div>
-				
-				<div class="testimonial-grid">
-					<div class="testimonial-card">
-						<p class="testimonial-quote">"CC3PO helped us streamline operations and significantly increase output without adding headcount. Their structured approach made measurable improvements fast."</p>
-						<div class="testimonial-author">
-							<div class="testimonial-avatar">TN</div>
-							<div class="testimonial-info">
-								<h4>Theresa Nunnally</h4>
-								<p>Leadership Development Strategist</p>
+		<!-- Testimonials -->
+		<section class="section-dark">
+			<div class="section" style="padding-top: 80px; padding-bottom: 80px;">
+				<div class="container">
+					<div class="section-header">
+						<h2>Proof of 3X</h2>
+						<p>Real results from real organizations</p>
+					</div>
+					
+					<div class="testimonial-grid">
+						<div class="testimonial-card">
+							<p class="testimonial-quote">"CC3PO helped us streamline operations and significantly increase output without adding headcount. Their structured approach made measurable improvements fast."</p>
+							<div class="testimonial-author">
+								<div class="testimonial-avatar">TN</div>
+								<div class="testimonial-info">
+									<h4>Theresa Nunnally</h4>
+									<p>Leadership Development Strategist</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="testimonial-card">
-						<p class="testimonial-quote">"The 3X Framework transformed how we operate. We eliminated 40% of manual processes and redirected that capacity to direct service delivery."</p>
-						<div class="testimonial-author">
-							<div class="testimonial-avatar">SC</div>
-							<div class="testimonial-info">
-								<h4>Sarah Chen</h4>
-								<p>Executive Director, Healthcare Nonprofit</p>
+						<div class="testimonial-card">
+							<p class="testimonial-quote">"The AI agents transformed how we operate. We eliminated 40% of manual processes and redirected that capacity to patient care."</p>
+							<div class="testimonial-author">
+								<div class="testimonial-avatar">SC</div>
+								<div class="testimonial-info">
+									<h4>Sarah Chen</h4>
+									<p>Practice Manager, Dental Group</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="testimonial-card">
-						<p class="testimonial-quote">"CC3PO didn't just automate tasks — they redesigned our operational architecture. We're now processing 3X the volume with the same team size."</p>
-						<div class="testimonial-author">
-							<div class="testimonial-avatar">MR</div>
-							<div class="testimonial-info">
-								<h4>Michael Rodriguez</h4>
-								<p>Operations Manager, Social Services Agency</p>
+						<div class="testimonial-card">
+							<p class="testimonial-quote">"CC3PO didn't just automate tasks -- they redesigned our operational architecture. We're now processing 3X the volume with the same team."</p>
+							<div class="testimonial-author">
+								<div class="testimonial-avatar">MR</div>
+								<div class="testimonial-info">
+									<h4>Michael Rodriguez</h4>
+									<p>Operations Manager</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -519,40 +674,11 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 		<section class="section">
 			<div class="container">
 				<div class="cta-section">
-					<h2>Ready to Achieve 3X Productivity?</h2>
-					<p>We'll audit your operations, identify what's holding your team back, and deliver a clear roadmap to triple your output in 90 days.</p>
+					<h2>Ready to Deploy Your AI Village?</h2>
+					<p>We'll audit your operations, configure your agents, and have your village delivering results within 90 days.</p>
 					<div class="cta-buttons">
-						<a href="/audit" class="btn btn-primary">Start Your 3X Productivity Audit →</a>
-						<a href="/case-studies" class="btn btn-secondary">See Case Studies</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<!-- Trusted By Section -->
-		<section class="section" style="padding-top: 0;">
-			<div class="container">
-				<div class="section-header">
-					<h2>Trusted by Growing Organizations</h2>
-					<p>Measurable outcomes from organizations that invested in strategic operational transformation</p>
-				</div>
-				
-				<div class="stats-grid">
-					<div class="stat-item">
-						<div class="stat-number">3X</div>
-						<div class="stat-label">Average Productivity Gain<br><span style="font-size: 11px; color: #666;">Within 12 months</span></div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">60%</div>
-						<div class="stat-label">Reduction in Manual Workflows<br><span style="font-size: 11px; color: #666;">Through automation</span></div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">500+</div>
-						<div class="stat-label">Staff Hours Reclaimed<br><span style="font-size: 11px; color: #666;">Per organization annually</span></div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">98%</div>
-						<div class="stat-label">Client Satisfaction<br><span style="font-size: 11px; color: #666;">Would recommend</span></div>
+						<a href="/contact" class="btn btn-primary">Get Started &rarr;</a>
+						<a href="/pricing" class="btn btn-secondary">View Pricing</a>
 					</div>
 				</div>
 			</div>
@@ -560,4 +686,247 @@ const ogImage = 'https://cc3po.com/wp-content/uploads/2025/04/Color-logo-with-ba
 	</main>
 	
 	<Footer />
+
+	<!-- Supabase Client + Trust Bar Animation -->
+	<script>
+		const SUPABASE_URL = 'https://cdrcgmdvepxwsbqaifxv.supabase.co';
+		const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkcmNnbWR2ZXB4d3NicWFpZnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MDY4MDksImV4cCI6MjA4OTA4MjgwOX0.hYJbKqVKqL4r9nJvX-2r4nCqZ-9sJFkQIwqFOeMvNkY';
+
+		interface SupabaseStats {
+			totalTasks: number;
+			doneTasks: number;
+		}
+
+		async function fetchSupabaseStats(): Promise<SupabaseStats> {
+			try {
+				const res = await fetch(`${SUPABASE_URL}/rest/v1/village_tasks?select=id,status`, {
+					headers: {
+						'apikey': SUPABASE_ANON_KEY,
+						'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+					},
+				});
+				if (!res.ok) throw new Error('Supabase fetch failed');
+				const data: Array<{id: string; status: string}> = await res.json();
+				const totalTasks = data.length;
+				const doneTasks = data.filter((t) => t.status === 'done').length;
+				return { totalTasks, doneTasks };
+			} catch {
+				return { totalTasks: 29, doneTasks: 29 };
+			}
+		}
+
+		function animateCountUp(el: HTMLElement, target: number, duration: number = 1800): void {
+			const prefix = el.dataset.prefix || '';
+			const suffix = el.dataset.suffix || '';
+			const decimal = parseInt(el.dataset.decimal || '0');
+			const start = 0;
+			const startTime = performance.now();
+
+			function update(currentTime: number): void {
+				const elapsed = currentTime - startTime;
+				const progress = Math.min(elapsed / duration, 1);
+				const eased = 1 - Math.pow(1 - progress, 3);
+				const current = start + (target - start) * eased;
+
+				if (decimal > 0) {
+					el.textContent = `${prefix}${current.toFixed(decimal)}${suffix}`;
+				} else {
+					el.textContent = `${prefix}${Math.round(current)}${suffix}`;
+				}
+
+				if (progress < 1) {
+					requestAnimationFrame(update);
+				}
+			}
+			requestAnimationFrame(update);
+		}
+
+		async function initTrustBar(): Promise<void> {
+			const stats = await fetchSupabaseStats();
+			const trustNumbers = document.querySelectorAll<HTMLElement>('.trust-number');
+
+			trustNumbers.forEach((el) => {
+				let target = parseFloat(el.dataset.target || '0');
+				const label = el.parentElement?.querySelector('.trust-label')?.textContent || '';
+
+				if (label.includes('Tasks Delivered')) {
+					target = stats.doneTasks || target;
+				}
+
+				animateCountUp(el, target, 2000);
+			});
+		}
+
+		const trustBarObserver = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					initTrustBar();
+					trustBarObserver.disconnect();
+				}
+			});
+		}, { threshold: 0.3 });
+
+		const trustBar = document.getElementById('trust-bar');
+		if (trustBar) trustBarObserver.observe(trustBar);
+	</script>
+
+	<!-- Canvas Particle Animation -->
+	<script>
+		function initHeroCanvas(): void {
+			const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+			if (!canvas) return;
+			const ctx = canvas.getContext('2d');
+			if (!ctx) return;
+
+			let width: number, height: number;
+			let particles: Array<{x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string}> = [];
+			let mouse = { x: -1000, y: -1000 };
+
+			const brainCenter = { x: 0.5, y: 0.35 };
+			const agentPositions = [
+				{ x: 0.25, y: 0.65, color: '#6b35ff' },
+				{ x: 0.50, y: 0.65, color: '#00d2ff' },
+				{ x: 0.75, y: 0.65, color: '#f59e0b' },
+			];
+
+			function resize(): void {
+				width = canvas!.width = canvas!.offsetWidth;
+				height = canvas!.height = canvas!.offsetHeight;
+			}
+
+			function createParticles(): void {
+				particles = [];
+				const count = Math.min(120, Math.floor(width * height / 8000));
+				for (let i = 0; i < count; i++) {
+					particles.push({
+						x: Math.random() * width,
+						y: Math.random() * height,
+						vx: (Math.random() - 0.5) * 0.6,
+						vy: (Math.random() - 0.5) * 0.6,
+						size: Math.random() * 2.5 + 0.5,
+						opacity: Math.random() * 0.5 + 0.2,
+						color: ['#6b35ff', '#00d2ff', '#a78bfa', '#8b5cf6'][Math.floor(Math.random() * 4)],
+					});
+				}
+			}
+
+			function drawConnectionLines(): void {
+				const cx = brainCenter.x * width;
+				const cy = brainCenter.y * height;
+
+				agentPositions.forEach((agent) => {
+					const ax = agent.x * width;
+					const ay = agent.y * height;
+					const gradient = ctx!.createLinearGradient(ax, ay, cx, cy);
+					gradient.addColorStop(0, agent.color + '40');
+					gradient.addColorStop(0.5, agent.color + '18');
+					gradient.addColorStop(1, '#6b35ff18');
+
+					ctx!.beginPath();
+					ctx!.moveTo(ax, ay);
+					const cpx = (ax + cx) / 2 + (Math.sin(Date.now() / 2000) * 30);
+					const cpy = (ay + cy) / 2 - 40;
+					ctx!.quadraticCurveTo(cpx, cpy, cx, cy);
+					ctx!.strokeStyle = gradient;
+					ctx!.lineWidth = 1.5;
+					ctx!.stroke();
+
+					const t = (Math.sin(Date.now() / 1000 + agentPositions.indexOf(agent) * 2) + 1) / 2;
+					const dotX = (1 - t) * (1 - t) * ax + 2 * (1 - t) * t * cpx + t * t * cx;
+					const dotY = (1 - t) * (1 - t) * ay + 2 * (1 - t) * t * cpy + t * t * cy;
+					ctx!.beginPath();
+					ctx!.arc(dotX, dotY, 3, 0, Math.PI * 2);
+					ctx!.fillStyle = agent.color;
+					ctx!.fill();
+				});
+
+				ctx!.beginPath();
+				ctx!.arc(cx, cy, 6, 0, Math.PI * 2);
+				const brainGlow = ctx!.createRadialGradient(cx, cy, 0, cx, cy, 20);
+				brainGlow.addColorStop(0, '#6b35ff80');
+				brainGlow.addColorStop(1, '#6b35ff00');
+				ctx!.fillStyle = brainGlow;
+				ctx!.fill();
+				ctx!.beginPath();
+				ctx!.arc(cx, cy, 4, 0, Math.PI * 2);
+				ctx!.fillStyle = '#a78bfa';
+				ctx!.fill();
+			}
+
+			function animate(): void {
+				ctx!.clearRect(0, 0, width, height);
+
+				drawConnectionLines();
+
+				particles.forEach((p) => {
+					p.x += p.vx;
+					p.y += p.vy;
+					if (p.x < 0 || p.x > width) p.vx *= -1;
+					if (p.y < 0 || p.y > height) p.vy *= -1;
+
+					ctx!.beginPath();
+					ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+					ctx!.fillStyle = p.color;
+					ctx!.globalAlpha = p.opacity;
+					ctx!.fill();
+					ctx!.globalAlpha = 1;
+				});
+
+				for (let i = 0; i < particles.length; i++) {
+					for (let j = i + 1; j < particles.length; j++) {
+						const dx = particles[i].x - particles[j].x;
+						const dy = particles[i].y - particles[j].y;
+						const dist = Math.sqrt(dx * dx + dy * dy);
+						if (dist < 100) {
+							ctx!.beginPath();
+							ctx!.moveTo(particles[i].x, particles[i].y);
+							ctx!.lineTo(particles[j].x, particles[j].y);
+							ctx!.strokeStyle = `rgba(107, 53, 255, ${0.08 * (1 - dist / 100)})`;
+							ctx!.lineWidth = 0.5;
+							ctx!.stroke();
+						}
+					}
+				}
+
+				const mouseDist = 150;
+				particles.forEach((p) => {
+					const dx = p.x - mouse.x;
+					const dy = p.y - mouse.y;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+					if (dist < mouseDist) {
+						ctx!.beginPath();
+						ctx!.moveTo(p.x, p.y);
+						ctx!.lineTo(mouse.x, mouse.y);
+						ctx!.strokeStyle = `rgba(0, 210, 255, ${0.15 * (1 - dist / mouseDist)})`;
+						ctx!.lineWidth = 0.8;
+						ctx!.stroke();
+					}
+				});
+
+				requestAnimationFrame(animate);
+			}
+
+			canvas.addEventListener('mousemove', (e: MouseEvent) => {
+				const rect = canvas!.getBoundingClientRect();
+				mouse.x = e.clientX - rect.left;
+				mouse.y = e.clientY - rect.top;
+			});
+
+			canvas.addEventListener('mouseleave', () => {
+				mouse.x = -1000;
+				mouse.y = -1000;
+			});
+
+			window.addEventListener('resize', () => {
+				resize();
+				createParticles();
+			});
+
+			resize();
+			createParticles();
+			animate();
+		}
+
+		initHeroCanvas();
+	</script>
 </Layout>

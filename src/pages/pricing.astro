@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Pricing - CC3PO">
+	<Header />
+	
+	<style>
+		.page-hero {
+			min-height: 45vh;
+			display: flex;
+			align-items: center;
+			padding: 120px 24px 60px;
+		}
+		.page-hero-inner {
+			max-width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.page-hero-inner h1 {
+			font-size: clamp(32px, 5vw, 56px);
+			font-weight: 800;
+			line-height: 1.1;
+			margin-bottom: 20px;
+			background: linear-gradient(135deg, #fff 30%, #a78bfa 60%, #00d2ff 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.page-hero-inner p {
+			font-size: clamp(16px, 2vw, 20px);
+			color: #a1a1aa;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		.section {
+			padding: 60px 24px 80px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.pricing-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 24px;
+			align-items: start;
+		}
+		.pricing-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			padding: 40px 32px;
+			transition: all 0.3s ease;
+			position: relative;
+		}
+		.pricing-card:hover {
+			border-color: rgba(107, 53, 255, 0.3);
+			transform: translateY(-4px);
+		}
+		.pricing-card.featured {
+			border-color: rgba(107, 53, 255, 0.4);
+			background: linear-gradient(145deg, #181822, #111116);
+		}
+		.pricing-card.featured::before {
+			content: 'Most Popular';
+			position: absolute;
+			top: -12px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 4px 16px;
+			background: var(--grad);
+			border-radius: 12px;
+			font-size: 12px;
+			font-weight: 700;
+			color: #fff;
+			white-space: nowrap;
+		}
+		.pricing-tier {
+			font-size: 14px;
+			color: var(--accent);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 8px;
+		}
+		.pricing-card h3 {
+			font-size: 24px;
+			margin-bottom: 8px;
+		}
+		.pricing-card .price {
+			font-size: 48px;
+			font-weight: 800;
+			background: var(--grad);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: 4px;
+		}
+		.pricing-card .price-period {
+			font-size: 14px;
+			color: #a1a1aa;
+			margin-bottom: 24px;
+		}
+		.pricing-card .description {
+			color: #a1a1aa;
+			font-size: 14px;
+			line-height: 1.6;
+			margin-bottom: 24px;
+			padding-bottom: 24px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		}
+		.pricing-card ul {
+			list-style: none;
+			padding: 0;
+			margin-bottom: 32px;
+		}
+		.pricing-card li {
+			padding: 8px 0;
+			font-size: 14px;
+			color: #a1a1aa;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.pricing-card li::before {
+			content: '>';
+			color: var(--accent);
+			font-weight: 700;
+			font-family: monospace;
+		}
+		.pricing-card .btn {
+			width: 100%;
+			justify-content: center;
+		}
+		.faq-section {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		.faq-item {
+			background: var(--card);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 12px;
+			margin-bottom: 12px;
+			overflow: hidden;
+		}
+		.faq-question {
+			padding: 20px 24px;
+			cursor: pointer;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-weight: 600;
+			font-size: 16px;
+			color: #fff;
+			user-select: none;
+		}
+		.faq-question:hover {
+			background: rgba(255, 255, 255, 0.02);
+		}
+		.faq-arrow {
+			transition: transform 0.3s;
+			color: var(--accent);
+		}
+		.faq-answer {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease;
+		}
+		.faq-answer-inner {
+			padding: 0 24px 20px;
+			color: #a1a1aa;
+			font-size: 14px;
+			line-height: 1.7;
+		}
+		.faq-item.active .faq-arrow {
+			transform: rotate(180deg);
+		}
+		.faq-item.active .faq-answer {
+			max-height: 300px;
+		}
+		.section-header {
+			text-align: center;
+			margin-bottom: 48px;
+		}
+		.section-header h2 {
+			font-size: clamp(28px, 4vw, 40px);
+			font-weight: 700;
+			margin-bottom: 12px;
+		}
+		.section-header p {
+			color: #a1a1aa;
+			font-size: 16px;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		@media (max-width: 768px) {
+			.page-hero {
+				padding: 100px 16px 40px;
+			}
+			.section {
+				padding: 40px 16px 60px;
+			}
+			.pricing-card .price {
+				font-size: 36px;
+			}
+		}
+	</style>
+	
+	<main>
+		<section class="page-hero">
+			<div class="page-hero-inner">
+				<span class="hero-badge">Pricing</span>
+				<h1>Simple, Transparent Pricing</h1>
+				<p>Choose the plan that fits your practice. Scale up as you grow.</p>
+			</div>
+		</section>
+		
+		<section class="section">
+			<div class="container">
+				<div class="pricing-grid">
+					<div class="pricing-card">
+						<div class="pricing-tier">Starter</div>
+						<h3>Scout</h3>
+						<div class="price">$997</div>
+						<div class="price-period">per month</div>
+						<p class="description">Essential IT management and security for solo practices and small offices.</p>
+						<ul>
+							<li>Managed IT for up to 10 endpoints</li>
+							<li>HIPAA compliance baseline</li>
+							<li>Email security & spam filtering</li>
+							<li>Cloud backup (daily)</li>
+							<li>Help desk support (business hours)</li>
+							<li>Monthly security reports</li>
+						</ul>
+						<a href="/contact" class="btn btn-secondary">Get Started</a>
+					</div>
+					
+					<div class="pricing-card featured">
+						<div class="pricing-tier">Growth</div>
+						<h3>Village</h3>
+						<div class="price">$2,497</div>
+						<div class="price-period">per month</div>
+						<p class="description">Full AI village deployment with automation, analytics, and proactive IT management.</p>
+						<ul>
+							<li>Everything in Scout</li>
+							<li>Hermes: Lead gen & outreach agent</li>
+							<li>Atlas: Analytics dashboard</li>
+							<li>Prometheus: Workflow automation</li>
+							<li>Up to 25 endpoints</li>
+							<li>24/7 monitoring & support</li>
+							<li>Quarterly business reviews</li>
+						</ul>
+						<a href="/contact" class="btn btn-primary">Deploy Village &rarr;</a>
+					</div>
+					
+					<div class="pricing-card">
+						<div class="pricing-tier">Enterprise</div>
+						<h3>Command</h3>
+						<div class="price">Custom</div>
+						<div class="price-period">tailored to your needs</div>
+						<p class="description">Full-scale IT operations, multi-location support, and custom agent configurations.</p>
+						<ul>
+							<li>Everything in Village</li>
+							<li>Unlimited endpoints</li>
+							<li>Multi-location support</li>
+							<li>Custom AI agent development</li>
+							<li>Dedicated account manager</li>
+							<li>On-site support available</li>
+							<li>SLA guarantees</li>
+						</ul>
+						<a href="/contact" class="btn btn-secondary">Contact Sales</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section" style="padding-top: 20px;">
+			<div class="container">
+				<div class="section-header">
+					<h2>Frequently Asked Questions</h2>
+				</div>
+				
+				<div class="faq-section">
+					<div class="faq-item">
+						<div class="faq-question">
+							What's included in the onboarding process?
+							<span class="faq-arrow">&#x25BC;</span>
+						</div>
+						<div class="faq-answer">
+							<div class="faq-answer-inner">Every plan includes a structured onboarding process: IT audit, security assessment, tool migration, and staff training. Onboarding typically takes 2-4 weeks depending on practice size.</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							Are there setup fees?
+							<span class="faq-arrow">&#x25BC;</span>
+						</div>
+						<div class="faq-answer">
+							<div class="faq-answer-inner">A one-time onboarding fee applies for migration, configuration, and training. This is scoped during your free IT assessment and typically ranges from $1,500-$5,000 based on complexity.</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							Can I switch plans later?
+							<span class="faq-arrow">&#x25BC;</span>
+						</div>
+						<div class="faq-answer">
+							<div class="faq-answer-inner">Yes. You can upgrade or downgrade at any time. Changes take effect at the start of your next billing cycle. We'll handle all migration steps for you.</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							What if I already have an IT provider?
+							<span class="faq-arrow">&#x25BC;</span>
+						</div>
+						<div class="faq-answer">
+							<div class="faq-answer-inner">We handle the transition. During your free assessment, we'll review your current setup and create a migration plan that minimizes downtime. Most transitions complete in under a week.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<Footer />
+
+	<script>
+		document.querySelectorAll('.faq-question').forEach((q) => {
+			q.addEventListener('click', () => {
+				const item = q.parentElement;
+				if (item) {
+					item.classList.toggle('active');
+				}
+			});
+		});
+	</script>
+</Layout>
