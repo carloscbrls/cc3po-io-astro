@@ -1,0 +1,103 @@
+---
+const agents = [
+	{ name: 'Hermes', role: 'Research', line: 'Discovers opportunities before anyone else.', icon: '🔍' },
+	{ name: 'Atlas', role: 'Ops', line: 'Builds and orchestrates infrastructure.', icon: '🏗️' },
+	{ name: 'Apollo', role: 'Content', line: 'Creates, writes, and publishes at scale.', icon: '✍️' },
+	{ name: 'Iris', role: 'Social', line: 'Engages and grows your digital presence.', icon: '🌐' },
+	{ name: 'Hestia', role: 'Email', line: 'Manages outreach and patient follow-up.', icon: '✉️' },
+	{ name: 'Athena', role: 'Strategy', line: 'Plans, forecasts, and optimizes.', icon: '🧠' },
+];
+---
+
+<section class="section" id="solution">
+	<div class="container">
+		<div class="solution-header">
+			<h2>The AI Village</h2>
+			<p>6 specialized agents. 1 coordinated system. Zero human bottleneck.</p>
+		</div>
+
+		<div class="agents-grid">
+			{agents.map(a => (
+				<div class="agent-card">
+					<div class="agent-icon">{a.icon}</div>
+					<div class="agent-name">{a.name}</div>
+					<div class="agent-role">{a.role}</div>
+					<div class="agent-line">{a.line}</div>
+				</div>
+			))}
+		</div>
+
+		<p class="fleet-quote">"1 practice = smart. 100 = brilliant. 1,000 = unstoppable."</p>
+	</div>
+</section>
+
+<style>
+	.solution-header {
+		text-align: center;
+		margin-bottom: 64px;
+	}
+	.solution-header h2 {
+		letter-spacing: -1.5px;
+		margin-bottom: 12px;
+	}
+	.solution-header p {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+	}
+	.agents-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+		margin-bottom: 48px;
+	}
+	.agent-card {
+		padding: 32px 24px;
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		text-align: center;
+		transition: border-color 0.3s, transform 0.3s;
+	}
+	.agent-card:hover {
+		border-color: var(--border-hover);
+		transform: translateY(-2px);
+	}
+	.agent-icon {
+		font-size: 28px;
+		margin-bottom: 16px;
+	}
+	.agent-name {
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.3px;
+		color: var(--text-primary);
+		margin-bottom: 4px;
+	}
+	.agent-role {
+		font-size: 12px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--accent-cyan);
+		margin-bottom: 12px;
+	}
+	.agent-line {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+	.fleet-quote {
+		text-align: center;
+		font-size: clamp(1.125rem, 2vw, 1.5rem);
+		font-weight: 500;
+		color: var(--accent-gold);
+		font-style: italic;
+		margin: 0;
+	}
+	@media (max-width: 1024px) {
+		.agents-grid { grid-template-columns: repeat(2, 1fr); }
+	}
+	@media (max-width: 640px) {
+		.agents-grid { grid-template-columns: 1fr; }
+	}
+</style>

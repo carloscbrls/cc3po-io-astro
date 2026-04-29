@@ -1,0 +1,826 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Book Your Strategy Call | CC3PO';
+const description = 'Schedule a 30-minute strategy call with CC3PO. No pressure — let\'s see if CC3PO is right for your practice.';
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main class="strategy-page">
+    <!-- Header -->
+    <section class="hero-section">
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-badge">30 Minutes · No Pressure</span>
+          <h1>Book Your <span class="grad-text-cyan">Strategy Call</span></h1>
+          <p class="hero-desc">
+            Let's see if CC3PO is right for your practice. Pick a time that works for you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Widget -->
+    <section class="booking-section" id="booking">
+      <div class="container">
+        <div class="booking-card" id="booking-card">
+          <!-- Step 1: Calendar -->
+          <div class="step" id="step-calendar">
+            <h2 class="step-title">1. Select a Date</h2>
+            <div class="calendar-grid" id="calendar-grid">
+              <div class="loading">Loading availability…</div>
+            </div>
+          </div>
+
+          <!-- Step 2: Time Slots -->
+          <div class="step hidden" id="step-slots">
+            <h2 class="step-title">2. Choose a Time <span class="tz-note">(Pacific Time)</span></h2>
+            <div class="slots-grid" id="slots-grid"></div>
+            <button class="back-btn" id="back-to-calendar">← Back to dates</button>
+          </div>
+
+          <!-- Step 3: Contact Form -->
+          <div class="step hidden" id="step-form">
+            <h2 class="step-title">3. Your Details</h2>
+            <p class="slot-summary" id="slot-summary"></p>
+            <form id="booking-form" novalidate>
+              <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="John Doe" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567" />
+              </div>
+              <div class="form-group">
+                <label for="company">Company / Practice Name</label>
+                <input type="text" id="company" name="company" placeholder="Acme Dental" />
+              </div>
+              <div class="form-group">
+                <label for="message">What would you like to discuss?</label>
+                <textarea id="message" name="message" rows="3" placeholder="Tell us about your practice and goals..."></textarea>
+              </div>
+              <div class="form-group consent-group">
+                <label class="consent-label">
+                  <input type="checkbox" id="sms-consent" name="sms_consent" required />
+                  <span class="checkmark"></span>
+                  <span class="consent-text">
+                    I agree to receive text messages from CC3PO LLC at the number provided.
+                    Reply STOP to cancel. Msg &amp; data rates may apply.
+                  </span>
+                </label>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="back-btn" id="back-to-slots">← Back</button>
+                <button type="submit" class="btn btn-primary" id="submit-btn">
+                  Confirm Strategy Call →
+                </button>
+              </div>
+              <div class="form-error" id="form-error"></div>
+            </form>
+          </div>
+
+          <!-- Step 4: Confirmation -->
+          <div class="step hidden" id="step-confirmation">
+            <div class="confirmation-content">
+              <div class="confirmation-icon">🎉</div>
+              <h2 class="confirmation-title">You're Booked!</h2>
+              <p class="confirmation-subtitle">You'll receive a confirmation email shortly.</p>
+
+              <div class="meeting-card" id="meeting-card">
+                <p><strong>Date:</strong> <span id="confirm-date"></span></p>
+                <p><strong>Time:</strong> <span id="confirm-time"></span></p>
+                <p><strong>Duration:</strong> 30 minutes</p>
+                <p><strong>Zoom Link:</strong> <a href="#" id="confirm-link" target="_blank" rel="noopener"></a></p>
+              </div>
+
+              <div class="confirmation-actions">
+                <button class="btn btn-primary" id="add-to-calendar">📅 Add to Calendar</button>
+                <a href="/" class="btn btn-secondary">Back to Home</a>
+              </div>
+
+              <p class="reminder-note">We'll send you a reminder 24 hours before your call.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating CTA -->
+  <a href="/strategy-call" class="floating-cta" id="floating-cta">
+    <span>Book a Call</span>
+  </a>
+
+  <Footer />
+</Layout>
+
+<style>
+  .strategy-page {
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+
+  .hero-section {
+    position: relative;
+    padding: 80px 0 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .hero-glow-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(76,201,240,0.12) 0%, transparent 70%);
+    top: 10%; right: 20%;
+    animation: floatGlow 10s ease-in-out infinite;
+  }
+  .hero-glow-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(247,37,133,0.08) 0%, transparent 70%);
+    bottom: 10%; left: 20%;
+    animation: floatGlow 12s ease-in-out infinite reverse;
+  }
+  @keyframes floatGlow {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(20px,-15px) scale(1.08); }
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: rgba(76,201,240,0.08);
+    border: 1px solid rgba(76,201,240,0.2);
+    border-radius: 24px;
+    font-size: 13px; font-weight: 500;
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .hero-section h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero-desc {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .booking-section { padding: 0 0 100px; }
+  .booking-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+  }
+
+  .step { animation: fadeIn 0.3s ease; }
+  .step.hidden { display: none; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .tz-note {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-left: 6px;
+  }
+
+  /* Calendar */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .calendar-header {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 8px 0;
+  }
+  .calendar-date {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 4px;
+    min-height: 56px;
+  }
+  .calendar-date:hover:not(.disabled):not(.past):not(.unavailable) {
+    border-color: var(--accent-cyan);
+    background: rgba(76,201,240,0.08);
+  }
+  .calendar-date.selected {
+    border-color: var(--accent-cyan);
+    background: rgba(76,201,240,0.15);
+    box-shadow: 0 0 20px rgba(76,201,240,0.15);
+  }
+  .calendar-date.disabled,
+  .calendar-date.past {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: transparent;
+  }
+  .calendar-date.unavailable {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: transparent;
+  }
+  .calendar-date .day-num {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .calendar-date .day-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .calendar-date.selected .day-num { color: var(--accent-cyan); }
+  .calendar-date.selected .day-label { color: var(--accent-cyan); }
+  .calendar-date .avail-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    margin-top: 4px;
+  }
+
+  /* Slots */
+  .slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .slot-btn {
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .slot-btn:hover:not(.taken) {
+    border-color: var(--accent-cyan);
+    background: rgba(76,201,240,0.08);
+  }
+  .slot-btn.selected {
+    border-color: var(--accent-cyan);
+    background: rgba(76,201,240,0.15);
+    box-shadow: 0 0 16px rgba(76,201,240,0.15);
+  }
+  .slot-btn.taken {
+    opacity: 0.35;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+  .back-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px 0;
+    font-family: var(--font-body);
+  }
+  .back-btn:hover { color: var(--accent-cyan); }
+
+  /* Form */
+  .slot-summary {
+    background: rgba(76,201,240,0.06);
+    border: 1px solid rgba(76,201,240,0.15);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .slot-summary strong { color: var(--accent-cyan); }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .form-group label .required { color: var(--accent-pink); }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-dim);
+  }
+
+  .consent-group { margin-top: 8px; }
+  .consent-label {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .consent-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--accent-cyan);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .consent-text {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .form-error {
+    color: var(--accent-pink);
+    font-size: 0.9rem;
+    margin-top: 12px;
+    min-height: 1.2em;
+  }
+
+  /* Confirmation */
+  .confirmation-content {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .confirmation-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+  .confirmation-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .confirmation-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .meeting-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .meeting-card p {
+    margin-bottom: 10px;
+    color: var(--text-muted);
+  }
+  .meeting-card p:last-child { margin-bottom: 0; }
+  .meeting-card strong { color: #fff; }
+  .meeting-card a { color: var(--accent-cyan); word-break: break-all; }
+  .confirmation-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .reminder-note {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
+    font-size: 0.95rem;
+  }
+
+  /* Floating CTA */
+  .floating-cta {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    background: var(--grad-gold);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 14px 24px;
+    border-radius: 999px;
+    box-shadow: 0 8px 30px rgba(245,166,35,0.35);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .floating-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .floating-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .booking-card { padding: 20px; border-radius: 16px; }
+    .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .calendar-date { min-height: 44px; border-radius: 8px; }
+    .calendar-date .day-num { font-size: 0.85rem; }
+    .calendar-date .day-label { font-size: 0.55rem; }
+    .slots-grid { grid-template-columns: repeat(3, 1fr); }
+    .form-actions { flex-direction: column; }
+    .form-actions .btn { width: 100%; justify-content: center; }
+    .confirmation-actions { flex-direction: column; }
+    .confirmation-actions .btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  // ---- State ----
+  let availability = {};
+  let selectedDate = null;
+  let selectedSlot = null;
+  let bookedMeeting = null;
+
+  const TIMEZONE = 'America/Los_Angeles';
+
+  // ---- Helpers ----
+  function formatPT(iso) {
+    const d = new Date(iso);
+    return d.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: TIMEZONE,
+    });
+  }
+  function formatPTDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      timeZone: TIMEZONE,
+    });
+  }
+  function getWeekStart(date) {
+    const d = new Date(date);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    const monday = new Date(d.setDate(diff));
+    monday.setHours(0, 0, 0, 0);
+    return monday;
+  }
+  function addDays(date, days) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + days);
+    return d;
+  }
+  function toISODate(date) {
+    return date.toISOString().split('T')[0];
+  }
+
+  // ---- Calendar ----
+  async function loadAvailability() {
+    const today = new Date();
+    const start = toISODate(today);
+    const end = toISODate(addDays(today, 21));
+
+    try {
+      const res = await fetch(`/.netlify/functions/zoom-availability?start_date=${start}&end_date=${end}`);
+      if (!res.ok) throw new Error('Failed to load availability');
+      const data = await res.json();
+
+      // Group by date
+      availability = {};
+      for (const slot of data.slots || []) {
+        const date = slot.start.split('T')[0];
+        if (!availability[date]) availability[date] = [];
+        availability[date].push(slot);
+      }
+
+      renderCalendar();
+    } catch (err) {
+      document.getElementById('calendar-grid').innerHTML = `
+        <div class="loading" style="grid-column:1/-1;color:var(--accent-pink)">
+          Could not load availability. Please refresh the page.
+        </div>`;
+      console.error(err);
+    }
+  }
+
+  function renderCalendar() {
+    const grid = document.getElementById('calendar-grid');
+    grid.innerHTML = '';
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const weekStart = getWeekStart(today);
+    const weeksToShow = 3;
+
+    // Day labels
+    const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    for (const label of dayLabels) {
+      const div = document.createElement('div');
+      div.className = 'calendar-header';
+      div.textContent = label;
+      grid.appendChild(div);
+    }
+
+    for (let w = 0; w < weeksToShow; w++) {
+      for (let d = 0; d < 7; d++) {
+        const date = addDays(weekStart, w * 7 + d);
+        const iso = toISODate(date);
+        const dayNum = date.getDate();
+        const isPast = date < today;
+        const isWeekend = d >= 5;
+        const slots = availability[iso] || [];
+        const hasSlots = slots.length > 0;
+
+        const btn = document.createElement('button');
+        btn.className = 'calendar-date';
+        btn.type = 'button';
+
+        if (isPast) {
+          btn.classList.add('past');
+          btn.disabled = true;
+        } else if (isWeekend || !hasSlots) {
+          btn.classList.add('unavailable');
+          btn.disabled = true;
+        }
+
+        if (selectedDate === iso && !btn.disabled) {
+          btn.classList.add('selected');
+        }
+
+        btn.innerHTML = `
+          <span class="day-label">${date.toLocaleDateString('en-US', { weekday: 'short' })}</span>
+          <span class="day-num">${dayNum}</span>
+          ${hasSlots && !isPast ? '<span class="avail-dot"></span>' : ''}
+        `;
+
+        if (!btn.disabled) {
+          btn.addEventListener('click', () => selectDate(iso));
+        }
+
+        grid.appendChild(btn);
+      }
+    }
+  }
+
+  function selectDate(iso) {
+    selectedDate = iso;
+    selectedSlot = null;
+    renderCalendar();
+    showSlots(iso);
+    showStep('step-slots');
+  }
+
+  // ---- Slots ----
+  function showSlots(iso) {
+    const container = document.getElementById('slots-grid');
+    container.innerHTML = '';
+
+    const slots = availability[iso] || [];
+    if (slots.length === 0) {
+      container.innerHTML = '<p style="color:var(--text-muted);text-align:center;width:100%;padding:20px;">No available slots for this date.</p>';
+      return;
+    }
+
+    for (const slot of slots) {
+      const btn = document.createElement('button');
+      btn.className = 'slot-btn';
+      btn.type = 'button';
+      btn.textContent = formatPT(slot.start);
+      btn.dataset.start = slot.start;
+      btn.dataset.end = slot.end;
+      btn.addEventListener('click', () => selectSlot(slot, btn));
+      container.appendChild(btn);
+    }
+  }
+
+  function selectSlot(slot, btn) {
+    selectedSlot = slot;
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+
+    // Show form after brief delay for UX
+    setTimeout(() => {
+      showStep('step-form');
+      const summary = document.getElementById('slot-summary');
+      summary.innerHTML = `<strong>${formatPTDate(slot.start)}</strong> at <strong>${formatPT(slot.start)} PT</strong>
+      `;
+    }, 200);
+  }
+
+  // ---- Form ----
+  document.getElementById('booking-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('form-error');
+    errorEl.textContent = '';
+
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const company = form.company.value.trim();
+    const message = form.message.value.trim();
+    const smsConsent = form.sms_consent.checked;
+
+    if (!name || !email || !phone) {
+      errorEl.textContent = 'Please fill in all required fields.';
+      return;
+    }
+    if (!smsConsent) {
+      errorEl.textContent = 'Please agree to the SMS terms to proceed.';
+      return;
+    }
+    if (!selectedSlot) {
+      errorEl.textContent = 'Please select a time slot.';
+      return;
+    }
+
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Booking...';
+
+    try {
+      const res = await fetch('/.netlify/functions/zoom-book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          company,
+          message,
+          slot_start: selectedSlot.start,
+          slot_end: selectedSlot.end,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Booking failed');
+      }
+
+      bookedMeeting = data.meeting;
+      showConfirmation();
+    } catch (err) {
+      console.error(err);
+      errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Confirm Strategy Call →';
+    }
+  });
+
+  function showConfirmation() {
+    showStep('step-confirmation');
+    const m = bookedMeeting;
+    const start = new Date(m.start_time);
+    document.getElementById('confirm-date').textContent = formatPTDate(m.start_time);
+    document.getElementById('confirm-time').textContent = formatPT(m.start_time) + ' PT';
+    const link = document.getElementById('confirm-link');
+    link.href = m.join_url;
+    link.textContent = m.join_url;
+  }
+
+  // ---- ICS Download ----
+  document.getElementById('add-to-calendar')?.addEventListener('click', () => {
+    if (!bookedMeeting) return;
+    const m = bookedMeeting;
+    const start = new Date(m.start_time);
+    const end = new Date(start.getTime() + m.duration * 60000);
+
+    function fmtICS(d) {
+      return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    }
+
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//CC3PO//Strategy Call//EN',
+      'BEGIN:VEVENT',
+      `UID:cc3po-strategy-${m.id}@cc3po.io`,
+      `DTSTAMP:${fmtICS(new Date())}`,
+      `DTSTART:${fmtICS(start)}`,
+      `DTEND:${fmtICS(end)}`,
+      `SUMMARY:CC3PO Strategy Call`,
+      `DESCRIPTION:Join Zoom meeting: ${m.join_url}`,
+      `LOCATION:Zoom`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const blob = new Blob([ics], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'cc3po-strategy-call.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  // ---- Navigation ----
+  function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  document.getElementById('back-to-calendar')?.addEventListener('click', () => {
+    selectedSlot = null;
+    showStep('step-calendar');
+  });
+  document.getElementById('back-to-slots')?.addEventListener('click', () => {
+    showStep('step-slots');
+  });
+
+  // ---- Floating CTA visibility on homepage ----
+  const floatingCta = document.getElementById('floating-cta');
+  if (floatingCta && window.location.pathname === '/') {
+    window.addEventListener('scroll', () => {
+      const hero = document.getElementById('hero');
+      if (hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        floatingCta.classList.toggle('visible', heroBottom < 0);
+      }
+    });
+  } else if (floatingCta) {
+    floatingCta.style.display = 'none';
+  }
+
+  // ---- Init ----
+  loadAvailability();
+</script>

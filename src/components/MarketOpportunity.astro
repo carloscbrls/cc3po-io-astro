@@ -1,0 +1,93 @@
+---
+const markets = [
+	{ current: '$5.4B', projected: '$69.4B', label: 'Combined Practice Management TAM (Dental + Medical + Legal + Vet)', detail: '42–48% CAGR', source: 'Verified CC3PO Research' },
+	{ current: '$283B', projected: '$1.7T', label: 'Enterprise Automation TAM', detail: '', source: 'McKinsey' },
+	{ current: '$13T', projected: '', label: 'Economic Impact of AI Automation', detail: '', source: 'Goldman Sachs' },
+];
+---
+
+<section class="section" id="platform">
+	<div class="container">
+		<h2 class="section-title">The Market</h2>
+		<div class="market-grid">
+			{markets.map(m => (
+				<div class="market-card">
+					<div class="market-nums">
+						<span class="market-current">{m.current}</span>
+						{m.projected && <span class="market-arrow">→</span>}
+						{m.projected && <span class="market-projected">{m.projected}</span>}
+					</div>
+					<div class="market-label">{m.label}</div>
+					{m.detail && <div class="market-detail">{m.detail}</div>}
+					<div class="market-source">Source: {m.source}</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.section-title {
+		text-align: center;
+		margin-bottom: 64px;
+		letter-spacing: -1.5px;
+	}
+	.market-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 32px;
+	}
+	.market-card {
+		padding: 40px 28px;
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		text-align: center;
+		transition: border-color 0.3s;
+	}
+	.market-card:hover {
+		border-color: var(--border-hover);
+	}
+	.market-nums {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin-bottom: 16px;
+	}
+	.market-current {
+		font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+		font-weight: 800;
+		letter-spacing: -1px;
+		color: var(--text-primary);
+	}
+	.market-arrow {
+		font-size: 1.5rem;
+		color: var(--accent-cyan);
+		font-weight: 700;
+	}
+	.market-projected {
+		font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+		font-weight: 800;
+		letter-spacing: -1px;
+		color: var(--accent-cyan);
+	}
+	.market-label {
+		font-size: 15px;
+		color: var(--text-secondary);
+		margin-bottom: 4px;
+	}
+	.market-detail {
+		font-size: 13px;
+		color: var(--text-muted);
+		margin-bottom: 12px;
+	}
+	.market-source {
+		font-size: 11px;
+		color: var(--text-muted);
+	}
+	@media (max-width: 768px) {
+		.market-grid { grid-template-columns: 1fr; }
+	}
+</style>

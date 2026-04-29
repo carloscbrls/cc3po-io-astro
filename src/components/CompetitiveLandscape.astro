@@ -1,0 +1,106 @@
+---
+const competitors = [
+	{ name: 'ServiceNow', val: '$200B', width: 100 },
+	{ name: 'Palantir', val: '$50B', width: 25 },
+	{ name: 'UiPath', val: '$12–35B', width: 17.5 },
+	{ name: 'Scale AI', val: '$13.8B', width: 6.9 },
+	{ name: 'Automation Anywhere', val: '$6.8B', width: 3.4 },
+	{ name: 'Sierra AI', val: '$4.5B', width: 2.25 },
+	{ name: 'Adept AI', val: '$1B+', width: 0.5 },
+];
+---
+
+<section class="section" id="about">
+	<div class="container">
+		<div class="landscape-header">
+			<h2>The Market</h2>
+		</div>
+		<div class="bar-chart">
+			{competitors.map(c => (
+				<div class="bar-row">
+					<div class="bar-label">
+						<span class="bar-name">{c.name}</span>
+						<span class="bar-val">{c.val}</span>
+					</div>
+					<div class="bar-track">
+						<div class="bar-fill" style={`width: ${c.width}%`}></div>
+					</div>
+				</div>
+			))}
+			<div class="bar-row cc3po">
+				<div class="bar-label">
+					<span class="bar-name">CC3PO</span>
+					<span class="bar-val cc3po-val">Seed Stage</span>
+				</div>
+				<div class="bar-track">
+					<div class="bar-fill cc3po-fill"></div>
+				</div>
+			</div>
+		</div>
+		<p class="landscape-sub">The autonomous workforce infrastructure for small business. Starting with dental.</p>
+	</div>
+</section>
+
+<style>
+	.landscape-header { text-align: center; margin-bottom: 64px; }
+	.landscape-header h2 { letter-spacing: -1.5px; }
+	.bar-chart {
+		max-width: 800px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	.bar-row {
+		display: grid;
+		grid-template-columns: 220px 1fr;
+		align-items: center;
+		gap: 20px;
+	}
+	@media (max-width: 640px) {
+		.bar-row { grid-template-columns: 150px 1fr; }
+	}
+	.bar-label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 8px;
+	}
+	.bar-name {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text-secondary);
+	}
+	.bar-val {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--text-primary);
+		white-space: nowrap;
+	}
+	.bar-track {
+		height: 10px;
+		background: var(--surface);
+		border-radius: 5px;
+		overflow: hidden;
+		border: 1px solid var(--border);
+	}
+	.bar-fill {
+		height: 100%;
+		background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+		border-radius: 5px;
+		transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.cc3po .bar-name { color: var(--text-primary); font-weight: 700; }
+	.cc3po-val { color: var(--accent-cyan); font-weight: 700; }
+	.cc3po-fill {
+		width: 100%;
+		background: var(--accent-cyan);
+		opacity: 0.5;
+	}
+	.landscape-sub {
+		text-align: center;
+		margin-top: 32px;
+		font-size: 15px;
+		color: var(--text-secondary);
+	}
+</style>

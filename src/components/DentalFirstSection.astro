@@ -1,0 +1,68 @@
+---
+const stats = [
+	{ num: '89%', label: 'paper-based workflows' },
+	{ num: '34%', label: 'patient no-show rate = $150K/yr lost per practice' },
+	{ num: '73%', label: 'have HIPAA compliance gaps' },
+	{ num: '$32B', label: 'wasted annually on manual operations' },
+];
+---
+
+<section class="section" id="dental">
+	<div class="container">
+		<div class="dental-header">
+			<h2>Why Dental First</h2>
+		</div>
+		<div class="dental-grid">
+			{stats.map(s => (
+				<div class="dental-card">
+					<div class="dental-num">{s.num}</div>
+					<div class="dental-label">{s.label}</div>
+				</div>
+			))}
+		</div>
+		<p class="dental-tagline">They do what happens IN the chair. We do what happens OUTSIDE the chair.</p>
+	</div>
+</section>
+
+<style>
+	.dental-header { text-align: center; margin-bottom: 64px; }
+	.dental-header h2 { letter-spacing: -1.5px; }
+	.dental-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+		max-width: 800px;
+		margin: 0 auto 40px;
+	}
+	.dental-card {
+		padding: 40px 32px;
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		text-align: center;
+		transition: border-color 0.3s;
+	}
+	.dental-card:hover { border-color: var(--border-hover); }
+	.dental-num {
+		font-size: clamp(2rem, 3vw, 2.5rem);
+		font-weight: 800;
+		letter-spacing: -1px;
+		color: var(--text-primary);
+		margin-bottom: 8px;
+	}
+	.dental-label {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+	.dental-tagline {
+		text-align: center;
+		font-size: clamp(1.125rem, 2vw, 1.5rem);
+		font-weight: 500;
+		color: var(--accent-gold);
+		margin: 0;
+	}
+	@media (max-width: 640px) {
+		.dental-grid { grid-template-columns: 1fr; }
+	}
+</style>

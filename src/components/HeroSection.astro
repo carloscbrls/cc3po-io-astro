@@ -1,0 +1,118 @@
+---
+---
+
+<section class="hero" id="hero">
+	<div class="hero-grid-bg" aria-hidden="true"></div>
+	<div class="container">
+		<div class="hero-content">
+			<div class="hero-badge">
+				<span class="badge-dot"></span>
+				Pre-Seed · AI Infrastructure
+			</div>
+
+			<h1>
+				<span class="stat-num">$5.1T</span> spent on IT operations annually.<br>
+				<span class="stat-num">2.5 hours</span> lost every day.<br>
+				<span class="hero-accent">We take it all back.</span>
+			</h1>
+
+			<p class="hero-sub">
+				Autonomous AI agents that think, decide, and execute.<br>
+				Every practice makes every other smarter. This is the moat.
+			</p>
+
+			<div class="hero-buttons">
+				<a href="#invest" class="btn btn-gold-filled">Request Investor Deck</a>
+				<a href="/strategy-call" class="btn btn-filled">Book a Strategy Call</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		padding: 140px 0 80px;
+	}
+	.hero-grid-bg {
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(76, 201, 240, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(76, 201, 240, 0.03) 1px, transparent 1px);
+		background-size: 80px 80px;
+		mask-image: radial-gradient(ellipse at 50% 40%, black 10%, transparent 60%);
+		-webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 10%, transparent 60%);
+		pointer-events: none;
+	}
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		max-width: 900px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.hero-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		background: rgba(76, 201, 240, 0.06);
+		border: 1px solid rgba(76, 201, 240, 0.12);
+		border-radius: 9999px;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text-secondary);
+		margin-bottom: 32px;
+	}
+	.badge-dot {
+		width: 6px;
+		height: 6px;
+		background: var(--accent-cyan);
+		border-radius: 50%;
+		box-shadow: 0 0 6px rgba(76, 201, 240, 0.4);
+		animation: badgePulse 2.5s ease-in-out infinite;
+	}
+	@keyframes badgePulse {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.5; }
+	}
+	.hero h1 {
+		font-weight: 800;
+		font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+		letter-spacing: -1.5px;
+		line-height: 1.1;
+		margin-bottom: 24px;
+	}
+	.stat-num {
+		color: var(--accent-cyan);
+	}
+	.hero-accent {
+		color: var(--accent-cyan);
+	}
+	.hero-sub {
+		font-size: clamp(1rem, 1.6vw, 1.25rem);
+		color: var(--text-secondary);
+		max-width: 580px;
+		margin: 0 auto 40px;
+		line-height: 1.7;
+	}
+	.hero-buttons {
+		display: flex;
+		gap: 16px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 768px) {
+		.hero { padding: 120px 20px 60px; }
+		.hero h1 { font-size: clamp(1.875rem, 7vw, 2.5rem); letter-spacing: -1px; }
+		.hero-buttons { flex-direction: column; align-items: center; }
+		.hero-buttons .btn { width: 100%; max-width: 300px; justify-content: center; }
+	}
+</style>
