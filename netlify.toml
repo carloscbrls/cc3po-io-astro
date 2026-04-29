@@ -4,6 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  ZOOM_ACCOUNT_ID = "mhC4aS5_TK6F_QqwRBdRJA"
+  ZOOM_CLIENT_ID = "Pzo7Hiq7QI61WEUGvySDKg"
+  ZOOM_CLIENT_SECRET = "ioftUX58gTpj65yRaYRPmVnZQOmJEKlc"
+  SUPABASE_URL = "https://cdrcgmdvepxwsbqaifxv.supabase.co"
+  SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkcmNnbWR2ZXB4d3NicWFpZnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MDY4MDksImV4cCI6MjA4OTA4MjgwOX0.pKWLWvsSimTOMkpaXKKrLJESrQEMUayUU1c9ANzr1Dc"
 
 
 [[headers]]

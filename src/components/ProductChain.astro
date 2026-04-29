@@ -1,0 +1,151 @@
+---
+const products = [
+	{ name: 'Voice', price: '$147/mo', desc: 'Answers calls' },
+	{ name: 'SmartBill', price: '$197/mo', desc: 'Processes insurance' },
+	{ name: 'NoShow', price: '$97/mo', desc: 'Reduces cancellations' },
+	{ name: 'Compliance', price: '$147/mo', desc: 'Monitors everything' },
+	{ name: 'Crew', price: '$147/mo', desc: 'Orchestrates it all' },
+];
+---
+
+<section class="section" id="products">
+	<div class="container">
+		<div class="chain-header">
+			<h2>How It Works</h2>
+			<p class="chain-desc">
+				Voice answers calls → SmartBill processes insurance → NoShow reduces cancellations → Compliance monitors everything → Crew orchestrates it all
+			</p>
+			<p class="chain-sub">
+				Each product makes the next one more valuable. This is vertical integration for AI.
+			</p>
+		</div>
+
+		<div class="chain-visual">
+			<div class="chain-nodes">
+				{products.map((p, i) => (
+					<div class="chain-item" style={`--delay: ${i * 0.15}s`}>
+						<div class="chain-node">
+							<div class="chain-name">{p.name}</div>
+							<div class="chain-price">{p.price}</div>
+							<div class="chain-desc-small">{p.desc}</div>
+						</div>
+						{i < products.length - 1 && <div class="chain-connector" aria-hidden="true"><div class="chain-flow"></div></div>}
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.chain-header {
+		text-align: center;
+		margin-bottom: 64px;
+	}
+	.chain-header h2 { letter-spacing: -1.5px; margin-bottom: 20px; }
+	.chain-desc {
+		font-size: clamp(1rem, 1.6vw, 1.25rem);
+		color: var(--text-secondary);
+		max-width: 800px;
+		margin: 0 auto 12px;
+		line-height: 1.7;
+	}
+	.chain-sub {
+		font-size: 15px;
+		color: var(--text-muted);
+		max-width: 600px;
+		margin: 0 auto;
+	}
+	.chain-nodes {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0;
+		flex-wrap: wrap;
+	}
+	.chain-item {
+		display: flex;
+		align-items: center;
+	}
+	.chain-node {
+		padding: 24px 28px;
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		text-align: center;
+		min-width: 130px;
+		transition: border-color 0.3s;
+		animation: chainFade 0.6s ease forwards;
+		animation-delay: var(--delay);
+		opacity: 0;
+	}
+	@keyframes chainFade {
+		from { opacity: 0; transform: translateY(8px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	.chain-node:hover { border-color: var(--border-hover); }
+	.chain-name {
+		font-size: 15px;
+		font-weight: 700;
+		letter-spacing: -0.3px;
+		color: var(--text-primary);
+		margin-bottom: 4px;
+	}
+	.chain-price {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--accent-cyan);
+		margin-bottom: 4px;
+	}
+	.chain-desc-small {
+		font-size: 12px;
+		color: var(--text-muted);
+	}
+	.chain-connector {
+		width: 48px;
+		height: 2px;
+		background: var(--border);
+		position: relative;
+		flex-shrink: 0;
+	}
+	.chain-flow {
+		width: 8px;
+		height: 8px;
+		background: var(--accent-cyan);
+		border-radius: 50%;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		box-shadow: 0 0 8px rgba(76,201,240,0.4);
+		animation: flowMove 2s ease-in-out infinite;
+	}
+	@keyframes flowMove {
+		0% { left: 0; opacity: 0; }
+		10% { opacity: 1; }
+		90% { opacity: 1; }
+		100% { left: calc(100% - 8px); opacity: 0; }
+	}
+	@media (max-width: 900px) {
+		.chain-nodes {
+			flex-direction: column;
+			gap: 0;
+		}
+		.chain-connector {
+			width: 2px;
+			height: 32px;
+		}
+		.chain-flow {
+			animation: flowMoveVert 2s ease-in-out infinite;
+			left: 50%;
+			top: 0;
+			transform: translateX(-50%);
+		}
+		@keyframes flowMoveVert {
+			0% { top: 0; opacity: 0; }
+			10% { opacity: 1; }
+			90% { opacity: 1; }
+			100% { top: calc(100% - 8px); opacity: 0; }
+		}
+	}
+</style>

@@ -1,0 +1,54 @@
+---
+---
+
+<a href="/strategy-call" class="floating-cta" id="floating-cta">Book a Strategy Call</a>
+
+<style>
+	.floating-cta {
+		position: fixed;
+		bottom: 24px;
+		right: 24px;
+		z-index: 100;
+		background: var(--accent-cyan);
+		color: var(--bg);
+		font-weight: 700;
+		font-size: 14px;
+		padding: 14px 24px;
+		border-radius: 9999px;
+		box-shadow: 0 8px 30px rgba(76,201,240,0.3);
+		text-decoration: none;
+		opacity: 0;
+		transform: translateY(20px);
+		transition: all 0.3s ease;
+		pointer-events: none;
+	}
+	.floating-cta.visible {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+	.floating-cta:hover {
+		background: #6dd4f5;
+		transform: translateY(-2px);
+		color: var(--bg);
+	}
+	@media (max-width: 768px) {
+		.floating-cta {
+			bottom: 16px;
+			right: 16px;
+			left: 16px;
+			text-align: center;
+		}
+	}
+</style>
+
+<script>
+	const fcta = document.getElementById('floating-cta');
+	window.addEventListener('scroll', () => {
+		const hero = document.getElementById('hero');
+		if (hero) {
+			const heroBottom = hero.getBoundingClientRect().bottom;
+			fcta?.classList.toggle('visible', heroBottom < 0);
+		}
+	});
+</script>

@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Disclaimer | CC3PO">
+  <Header />
+  <main class="legal-page">
+    <div class="container">
+      <h1>Disclaimer</h1>
+      <p class="last-updated">Last Updated: April 28, 2026</p>
+      <div class="content">
+        <div class="warning-box">
+          <strong>IMPORTANT NOTICE</strong>
+          <p>Please read this disclaimer carefully before using any services, tools, or content provided by CC3PO LLC. By using our Services, you acknowledge and agree to the following terms.</p>
+        </div>
+        <h2>1. AI-Generated Content Advisory</h2>
+        <p>CC3PO's Services utilize artificial intelligence (AI), machine learning, and automation technologies. You acknowledge that:</p>
+        <ul>
+          <li>All AI-generated content, reports, recommendations, and outputs are <strong>advisory only</strong> and not guaranteed to be accurate, complete, or up-to-date</li>
+          <li>AI systems may produce errors, hallucinations, or biased outputs</li>
+          <li>AI-generated content should always be verified by qualified human professionals</li>
+          <li>We do not guarantee that AI outputs will meet your specific needs or expectations</li>
+          <li>The quality of AI outputs depends on the quality and completeness of input data provided by you</li>
+        </ul>
+        <h2>2. No Professional Advice</h2>
+        <p>The information, reports, recommendations, and content provided through our Services <strong>do not constitute professional advice</strong>:</p>
+        <ul>
+          <li><strong>Legal:</strong> Our Services do not provide legal advice. Consult a licensed attorney for legal matters.</li>
+          <li><strong>Medical/Healthcare:</strong> Our HIPAA compliance tools and health-related scanners are informational aids only. They do not constitute medical advice or guarantee compliance. Consult qualified healthcare compliance professionals.</li>
+          <li><strong>Financial:</strong> Our Services do not provide financial, investment, or accounting advice. Consult a qualified financial professional.</li>
+          <li><strong>Security:</strong> Website audits and security scans identify potential issues but do not guarantee that all vulnerabilities will be found or that your systems are fully secure.</li>
+        </ul>
+        <h2>3. Website Audit Results</h2>
+        <p>Our website audit, SEO analysis, performance testing, and security scanning tools:</p>
+        <ul>
+          <li>Provide <strong>recommendations only</strong> — not guarantees of improvement</li>
+          <li>Are based on automated analysis and may not identify all issues</li>
+          <li>May produce false positives or miss certain problems</li>
+          <li>Should be reviewed by qualified web developers or security professionals</li>
+          <li>Results may vary based on website changes, third-party integrations, and evolving standards</li>
+        </ul>
+        <h2>4. HIPAA Compliance Tools</h2>
+        <p>For healthcare clients using our HIPAA compliance scanners and tools:</p>
+        <ul>
+          <li>Our tools are <strong>aids to help identify potential compliance gaps</strong>, not guarantees of HIPAA compliance</li>
+          <li>Achieving and maintaining HIPAA compliance requires ongoing effort, training, and professional oversight</li>
+          <li>Passing our scanner does not guarantee compliance with HIPAA regulations</li>
+          <li>You are solely responsible for ensuring your organization meets all applicable healthcare regulations</li>
+          <li>Consult a qualified HIPAA compliance professional for comprehensive compliance assessment</li>
+        </ul>
+        <h2>5. Results May Vary</h2>
+        <p>Individual results from using our Services will vary based on:</p>
+        <ul>
+          <li>The nature and condition of your existing systems and website</li>
+          <li>Your implementation of recommendations</li>
+          <li>External factors beyond our control (search engine algorithm changes, third-party service changes, etc.)</li>
+          <li>The accuracy and completeness of information you provide</li>
+        </ul>
+        <p>We make no guarantees about specific outcomes, improvements, or returns from using our Services.</p>
+        <h2>6. Third-Party Integrations</h2>
+        <p>Our Services may integrate with or reference third-party tools, platforms, and services:</p>
+        <ul>
+          <li>We do not control and are not responsible for third-party services</li>
+          <li>Third-party integrations may change, break, or become unavailable without notice</li>
+          <li>We do not guarantee compatibility with all third-party systems</li>
+          <li>Third-party terms of service and privacy policies apply to your use of those services</li>
+          <li>We are not liable for issues arising from third-party services</li>
+        </ul>
+        <h2>7. No Guarantee of Specific Outcomes</h2>
+        <p>We make no representations or warranties regarding:</p>
+        <ul>
+          <li>Specific rankings in search engines</li>
+          <li>Specific increases in traffic, conversions, or revenue</li>
+          <li>Complete elimination of security vulnerabilities</li>
+          <li>Passing of any regulatory audit or inspection</li>
+          <li>Specific business outcomes or ROI from using our Services</li>
+        </ul>
+        <h2>8. "As Is" Disclaimer</h2>
+        <p>ALL SERVICES, CONTENT, AND MATERIALS ARE PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+        <h2>9. Limitation of Liability</h2>
+        <p>IN NO EVENT SHALL CC3PO LLC BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF OR INABILITY TO USE OUR SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+        <h2>10. Contact</h2>
+        <p>For questions about this Disclaimer:</p>
+        <ul>
+          <li>Email: <a href="mailto:legal@cc3po.com">legal@cc3po.com</a></li>
+          <li>Website: <a href="https://cc3po.com">cc3po.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { padding: 120px 24px 60px; min-height: 60vh; }
+  .container { max-width: 800px; margin: 0 auto; }
+  h1 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #fff, #4cc9f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .last-updated { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
+  .content { color: var(--text-muted); font-size: 15px; line-height: 1.7; }
+  .content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 20px; font-weight: 600; color: #fff; margin: 32px 0 12px; }
+  .content p { margin-bottom: 16px; }
+  .content ul { margin-left: 24px; margin-bottom: 16px; }
+  .content li { margin-bottom: 8px; }
+  .content a { color: var(--accent-cyan); text-decoration: none; }
+  .content a:hover { text-decoration: underline; }
+  .warning-box { background: rgba(245, 166, 35, 0.08); border-left: 4px solid var(--accent-gold); padding: 20px; margin-bottom: 32px; border-radius: 8px; }
+  .warning-box strong { display: block; margin-bottom: 8px; color: var(--accent-gold); font-size: 16px; }
+  .warning-box p { margin: 0; color: var(--text-muted); }
+  @media (max-width: 768px) { .legal-page { padding: 100px 16px 40px; } }
+</style>

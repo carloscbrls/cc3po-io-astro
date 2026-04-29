@@ -1,0 +1,76 @@
+---
+const stats = [
+	{ num: '$847', unit: '/mo', label: 'Average revenue per client' },
+	{ num: '92%', unit: '', label: 'Client retention' },
+	{ num: '$100–150', unit: '/mo', label: 'Bootstrap operating cost' },
+	{ num: '$500–1K', unit: '/mo', label: 'Growth cost (100 clients)' },
+];
+---
+
+<section class="section" id="revenue">
+	<div class="container">
+		<div class="rev-header">
+			<h2>Unit Economics</h2>
+		</div>
+		<div class="rev-grid">
+			{stats.map(s => (
+				<div class="rev-card">
+					<div class="rev-num">
+						<span>{s.num}</span><span class="rev-unit">{s.unit}</span>
+					</div>
+					<div class="rev-label">{s.label}</div>
+				</div>
+			))}
+		</div>
+		<p class="rev-ltv">→ 5–8x LTV:CAC ratio at scale</p>
+	</div>
+</section>
+
+<style>
+	.rev-header { text-align: center; margin-bottom: 64px; }
+	.rev-header h2 { letter-spacing: -1.5px; }
+	.rev-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+		max-width: 800px;
+		margin: 0 auto 32px;
+	}
+	.rev-card {
+		padding: 40px 32px;
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		text-align: center;
+		transition: border-color 0.3s;
+	}
+	.rev-card:hover { border-color: var(--border-hover); }
+	.rev-num {
+		font-size: clamp(2rem, 3vw, 2.5rem);
+		font-weight: 800;
+		letter-spacing: -1px;
+		color: var(--text-primary);
+		margin-bottom: 8px;
+	}
+	.rev-unit {
+		font-size: 0.6em;
+		font-weight: 500;
+		color: var(--text-secondary);
+		margin-left: 2px;
+	}
+	.rev-label {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+	.rev-ltv {
+		text-align: center;
+		font-size: clamp(1.125rem, 2vw, 1.35rem);
+		font-weight: 600;
+		color: var(--accent-cyan);
+		margin: 0;
+	}
+	@media (max-width: 640px) {
+		.rev-grid { grid-template-columns: 1fr; }
+	}
+</style>

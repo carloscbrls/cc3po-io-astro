@@ -1,0 +1,83 @@
+---
+---
+
+<div class="cookie-banner" id="cookie-banner">
+	<div class="cookie-inner">
+		<p>We use cookies to improve your experience and analyze site traffic. By continuing, you agree to our use of cookies.</p>
+		<div class="cookie-actions">
+			<button class="btn btn-primary cookie-btn" id="cookie-accept">Accept</button>
+			<button class="btn btn-secondary cookie-btn" id="cookie-reject">Decline</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.cookie-banner {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 9999;
+		background: rgba(5, 5, 8, 0.95);
+		backdrop-filter: blur(20px);
+		border-top: 1px solid rgba(255,255,255,0.08);
+		padding: 16px 24px;
+		display: none;
+		transform: translateY(100%);
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.cookie-banner.show {
+		display: block;
+		transform: translateY(0);
+	}
+	.cookie-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+	.cookie-inner p {
+		margin: 0;
+		font-size: 14px;
+		color: var(--text-muted);
+		flex: 1;
+		min-width: 200px;
+	}
+	.cookie-actions {
+		display: flex;
+		gap: 12px;
+	}
+	.cookie-btn {
+		padding: 8px 20px !important;
+		font-size: 14px !important;
+	}
+	@media (max-width: 600px) {
+		.cookie-inner { flex-direction: column; align-items: stretch; }
+		.cookie-actions { justify-content: stretch; }
+		.cookie-actions .btn { flex: 1; justify-content: center; }
+	}
+</style>
+
+<script>
+	const banner = document.getElementById('cookie-banner');
+	const acceptBtn = document.getElementById('cookie-accept');
+	const rejectBtn = document.getElementById('cookie-reject');
+	const consent = localStorage.getItem('cc3po-cookie-consent');
+
+	if (!consent) {
+		setTimeout(() => banner?.classList.add('show'), 1500);
+	}
+
+	acceptBtn?.addEventListener('click', () => {
+		localStorage.setItem('cc3po-cookie-consent', 'accepted');
+		banner?.classList.remove('show');
+	});
+
+	rejectBtn?.addEventListener('click', () => {
+		localStorage.setItem('cc3po-cookie-consent', 'rejected');
+		banner?.classList.remove('show');
+	});
+</script>

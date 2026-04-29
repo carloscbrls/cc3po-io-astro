@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cc3po.io/sitemap-index.xml
