@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Dental IT Solutions - CC3PO">
+	<Header />
+	
+	<style>
+		.page-hero {
+			min-height: 50vh;
+			display: flex;
+			align-items: center;
+			padding: 120px 24px 60px;
+		}
+		.page-hero-inner {
+			max-width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.page-hero-inner h1 {
+			font-size: clamp(32px, 5vw, 56px);
+			font-weight: 800;
+			line-height: 1.1;
+			margin-bottom: 20px;
+			background: linear-gradient(135deg, #fff 30%, #a78bfa 60%, #00d2ff 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.page-hero-inner p {
+			font-size: clamp(16px, 2vw, 20px);
+			color: #a1a1aa;
+			max-width: 600px;
+			margin: 0 auto 32px;
+		}
+		.section {
+			padding: 80px 24px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.section-dark {
+			background: var(--card);
+		}
+		.section-header {
+			text-align: center;
+			margin-bottom: 48px;
+		}
+		.section-header h2 {
+			font-size: clamp(28px, 4vw, 40px);
+			font-weight: 700;
+			margin-bottom: 12px;
+		}
+		.section-header p {
+			color: #a1a1aa;
+			font-size: 16px;
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		.services-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 24px;
+		}
+		.service-card {
+			background: linear-gradient(145deg, #141418, #0f0f11);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			border-radius: 20px;
+			padding: 36px;
+			transition: all 0.3s ease;
+		}
+		.service-card:hover {
+			border-color: rgba(107, 53, 255, 0.3);
+			transform: translateY(-4px);
+		}
+		.service-icon {
+			width: 56px;
+			height: 56px;
+			border-radius: 14px;
+			background: var(--grad);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+		.service-card h3 {
+			font-size: 20px;
+			margin-bottom: 12px;
+		}
+		.service-card p {
+			color: #a1a1aa;
+			font-size: 14px;
+			line-height: 1.7;
+		}
+		.service-card ul {
+			list-style: none;
+			padding: 0;
+			margin-top: 16px;
+		}
+		.service-card li {
+			padding: 6px 0;
+			font-size: 14px;
+			color: #a1a1aa;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.service-card li::before {
+			content: '>';
+			color: var(--accent);
+			font-weight: 700;
+			font-family: monospace;
+		}
+		.compliance-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 20px;
+		}
+		.compliance-card {
+			background: rgba(107, 53, 255, 0.08);
+			border: 1px solid rgba(107, 53, 255, 0.15);
+			border-radius: 16px;
+			padding: 28px;
+			text-align: center;
+		}
+		.compliance-card h3 {
+			font-size: 18px;
+			margin-bottom: 8px;
+		}
+		.compliance-card p {
+			color: #a1a1aa;
+			font-size: 14px;
+		}
+		.cta-section {
+			background: linear-gradient(135deg, rgba(107, 53, 255, 0.1), rgba(0, 210, 255, 0.08));
+			border: 1px solid rgba(107, 53, 255, 0.15);
+			border-radius: 24px;
+			padding: 60px;
+			text-align: center;
+		}
+		.cta-section h2 {
+			font-size: clamp(24px, 4vw, 36px);
+			margin-bottom: 16px;
+		}
+		.cta-section p {
+			color: #a1a1aa;
+			margin-bottom: 32px;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.cta-buttons {
+			display: flex;
+			gap: 16px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		@media (max-width: 768px) {
+			.page-hero {
+				padding: 100px 16px 40px;
+			}
+			.section {
+				padding: 60px 16px;
+			}
+			.cta-section {
+				padding: 40px 20px;
+			}
+		}
+	</style>
+	
+	<main>
+		<section class="page-hero">
+			<div class="page-hero-inner">
+				<span class="hero-badge">Dental IT</span>
+				<h1>IT Infrastructure Built for Dental Practices</h1>
+				<p>HIPAA-compliant managed IT, cybersecurity, and AI automation designed specifically for dental offices.</p>
+				<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+					<a href="/contact" class="btn btn-primary">Get a Free IT Assessment &rarr;</a>
+					<a href="/pricing" class="btn btn-secondary">View Plans</a>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Managed IT Services</h2>
+					<p>Everything your dental practice needs to stay secure, compliant, and productive.</p>
+				</div>
+				
+				<div class="services-grid">
+					<div class="service-card">
+						<div class="service-icon">&#x1F6E1;&#xFE0F;</div>
+						<h3>HIPAA Compliance</h3>
+						<p>Full HIPAA compliance management including risk assessments, policy documentation, and staff training.</p>
+						<ul>
+							<li>Annual risk assessments</li>
+							<li>BAA management</li>
+							<li>Incident response planning</li>
+							<li>Staff security training</li>
+						</ul>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">&#x1F512;</div>
+						<h3>Cybersecurity</h3>
+						<p>Enterprise-grade security for dental practices. Protect patient data with proactive threat monitoring.</p>
+						<ul>
+							<li>24/7 threat monitoring</li>
+							<li>Endpoint protection</li>
+							<li>Email security & phishing defense</li>
+							<li>Encrypted backups</li>
+						</ul>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">&#x2601;&#xFE0F;</div>
+						<h3>Cloud & Infrastructure</h3>
+						<p>Modern cloud infrastructure that keeps your practice running smoothly with 99.9% uptime.</p>
+						<ul>
+							<li>Cloud migration & management</li>
+							<li>Practice management software support</li>
+							<li>Network design & optimization</li>
+							<li>Disaster recovery</li>
+						</ul>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">&#x1F916;</div>
+						<h3>AI-Powered Automation</h3>
+						<p>Deploy AI agents to handle scheduling, patient communications, and administrative tasks.</p>
+						<ul>
+							<li>Appointment reminders & follow-ups</li>
+							<li>Insurance verification automation</li>
+							<li>Patient intake digitization</li>
+							<li>Revenue cycle optimization</li>
+						</ul>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">&#x1F4DE;</div>
+						<h3>Help Desk & Support</h3>
+						<p>Responsive IT support when you need it. No waiting, no runaround.</p>
+						<ul>
+							<li>Same-day response guarantee</li>
+							<li>Remote & on-site support</li>
+							<li>Hardware procurement</li>
+							<li>Vendor management</li>
+						</ul>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">&#x1F4CA;</div>
+						<h3>Imaging & Digital Workflows</h3>
+						<p>Digital imaging integration, sensor support, and paperless workflow configuration.</p>
+						<ul>
+							<li>Digital sensor setup & support</li>
+							<li>PACS integration</li>
+							<li>Intraoral camera systems</li>
+							<li>Digital forms & charting</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section-dark">
+			<div class="section" style="padding-top: 80px; padding-bottom: 80px;">
+				<div class="container">
+					<div class="section-header">
+						<h2>Compliance & Certifications</h2>
+						<p>We meet the standards dental practices are required to follow.</p>
+					</div>
+					
+					<div class="compliance-grid">
+						<div class="compliance-card">
+							<h3>HIPAA</h3>
+							<p>Full Health Insurance Portability and Accountability Act compliance management</p>
+						</div>
+						<div class="compliance-card">
+							<h3>OSHA</h3>
+							<p>Occupational Safety and Health Administration standards for dental workplaces</p>
+						</div>
+						<div class="compliance-card">
+							<h3>PCI DSS</h3>
+							<p>Payment Card Industry Data Security Standard for patient payment processing</p>
+						</div>
+						<div class="compliance-card">
+							<h3>SOC 2</h3>
+							<p>Security, availability, and confidentiality controls verified by independent audit</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section">
+			<div class="container">
+				<div class="cta-section">
+					<h2>Ready to Modernize Your Practice IT?</h2>
+					<p>Get a free IT assessment and see how we can reduce costs, improve security, and automate your operations.</p>
+					<div class="cta-buttons">
+						<a href="/contact" class="btn btn-primary">Schedule Assessment &rarr;</a>
+						<a href="/pricing" class="btn btn-secondary">View Plans</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<Footer />
+</Layout>
