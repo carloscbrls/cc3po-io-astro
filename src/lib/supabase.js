@@ -12,7 +12,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 
 export async function submitInvestorInquiry(formData) {
   const { data, error } = await supabase
-    .from('investor_inquiries')
+    .from('leads')
     .insert([{
       name: formData.name,
       email: formData.email,
