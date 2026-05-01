@@ -2,6 +2,7 @@ const { getZoomAccessToken } = require('./zoom-token');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkcmNnbWR2ZXB4d3NicWFpZnh2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzUwNjgwOSwiZXhwIjoyMDg5MDgyODA5fQ.IXD7n4w6GadXsoqxL9SpI3Bc-CZWLF6ykUkpgas15FQ';
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 
 function getLeadEmailHtml(data, meeting) {
@@ -140,6 +141,42 @@ async function saveLead(data) {
   return await response.json();
 }
 
+async function saveClientForm(data) {
+  const key = SUPABASE_SERVICE_KEY;
+  const url = 'https://cdrcgmdvepxwsbqaifxv.supabase.co';
+
+  try {
+    const response = await fetch(`${url}/rest/v1/client_forms`, {
+      method: 'POST',
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        message: data.message,
+        source_site: 'cc3po.io',
+        source_page: '/strategy-call',
+        form_type: 'consultation',
+      }),
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error('Supabase client_forms save error:', response.status, errText);
+    } else {
+      console.log('Saved to client_forms successfully');
+    }
+  } catch (err) {
+    console.error('client_forms save error:', err);
+  }
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
@@ -193,7 +230,7 @@ exports.handler = async (event) => {
 
     const meeting = await zoomResponse.json();
 
-    // 2. Save lead to Supabase
+    // 2. Save lead to Supabase (legacy table)
     const leadData = {
       name,
       email,
@@ -203,6 +240,9 @@ exports.handler = async (event) => {
       source: 'cc3po.io-strategy-call',
     };
     await saveLead(leadData);
+
+    // 2b. Save to client_forms (cc3po-ops)
+    await saveClientForm({ name, email, phone, company, message });
 
     // 3. Send confirmation email to lead
     try {
