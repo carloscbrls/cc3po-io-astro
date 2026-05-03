@@ -38,6 +38,22 @@
 		position: relative;
 		overflow: hidden;
 		padding: 140px 0 80px;
+		background-image: url('/images/hero-bg-mobile.webp');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	@media (min-width: 768px) {
+		.hero {
+			background-image: url('/images/hero-bg.webp');
+		}
+	}
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(10,10,18,0.75) 0%, rgba(15,15,34,0.6) 40%, rgba(10,10,18,0.85) 100%);
+		z-index: 1;
 	}
 	.hero-grid-bg {
 		position: absolute;
@@ -49,10 +65,11 @@
 		mask-image: radial-gradient(ellipse at 50% 40%, black 10%, transparent 60%);
 		-webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 10%, transparent 60%);
 		pointer-events: none;
+		z-index: 2;
 	}
 	.hero-content {
 		position: relative;
-		z-index: 1;
+		z-index: 3;
 		max-width: 900px;
 		margin: 0 auto;
 		text-align: center;
