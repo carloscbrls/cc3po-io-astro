@@ -1,14 +1,15 @@
-functionsDirectory = "/Users/cc3po/.openclaw/workspace/cc3po-io-astro/netlify/functions"
+functionsDirectory = "/private/tmp/cc3po-io-astro/netlify/functions"
 functionsDirectoryOrigin = "default"
 headersOrigin = "config"
+redirectsOrigin = "config"
 plugins = []
 
 [build]
-publish = "/Users/cc3po/.openclaw/workspace/cc3po-io-astro/dist"
+publish = "/private/tmp/cc3po-io-astro/dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"
-functions = "/Users/cc3po/.openclaw/workspace/cc3po-io-astro/netlify/functions"
+functions = "/private/tmp/cc3po-io-astro/netlify/functions"
 
 [build.environment]
 NODE_VERSION = "22"
@@ -54,6 +55,42 @@ from = "/*"
 to = "/index.html"
 status = 200.0
 force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "https://audit.cc3po.io/*"
+to = "https://cc3po-ai-website-ana-6s4v.bolt.host/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "https://contract.cc3po.io/*"
+to = "https://cc3po-ai-contract-an-o9vh.bolt.host/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "https://video.cc3po.io/*"
+to = "https://cc3po-ai-video-studi-xi3s.bolt.host/:splat"
+status = 301.0
+force = true
 
 [redirects.query]
 

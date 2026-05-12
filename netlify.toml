@@ -24,23 +24,4 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Temporary redirects to Bolt Cloud while domain verification is pending
-# Bolt support ticket sent May 12, 2026 - waiting for response
-# Once Bolt verifies the domains, these redirects will be removed and proper custom domains will work
-[[redirects]]
-  from = "https://audit.cc3po.io/*"
-  to = "https://cc3po-ai-website-ana-6s4v.bolt.host/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://contract.cc3po.io/*"
-  to = "https://cc3po-ai-contract-an-o9vh.bolt.host/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://video.cc3po.io/*"
-  to = "https://cc3po-ai-video-studi-xi3s.bolt.host/:splat"
-  status = 301
-  force = true
+# Temporary redirects handled via _redirects file in public/
