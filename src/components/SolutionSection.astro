@@ -1,33 +1,43 @@
 ---
 const agents = [
-	{ name: 'Hermes', role: 'Research', line: 'Discovers opportunities before anyone else.', icon: '🔍' },
-	{ name: 'Atlas', role: 'Ops', line: 'Builds and orchestrates infrastructure.', icon: '🏗️' },
-	{ name: 'Apollo', role: 'Content', line: 'Creates, writes, and publishes at scale.', icon: '✍️' },
-	{ name: 'Iris', role: 'Social', line: 'Engages and grows your digital presence.', icon: '🌐' },
-	{ name: 'Hestia', role: 'Email', line: 'Manages outreach and patient follow-up.', icon: '✉️' },
-	{ name: 'Athena', role: 'Strategy', line: 'Plans, forecasts, and optimizes.', icon: '🧠' },
+	{ name: 'Atlas 🌍', role: 'Command', line: 'Coordinates Mac Mini village infrastructure', dept: 'Command' },
+	{ name: 'Hermes ⚡', role: 'Command', line: 'Leads Droplet village research & innovation', dept: 'Command' },
+	{ name: 'Alexandria 📚', role: 'Intelligence', line: 'Lead research & competitive analysis', dept: 'Intelligence' },
+	{ name: 'Apollo 🔍', role: 'Intelligence', line: 'Deep research & market intelligence', dept: 'Intelligence' },
+	{ name: 'Sentinel 🛡️', role: 'Compliance', line: 'WCAG/ADA/HIPAA compliance checking', dept: 'Compliance' },
+	{ name: 'Sage 🌿', role: 'Innovation', line: 'Scans 15+ AI sources, auto-evaluates tools', dept: 'Innovation' },
+	{ name: 'Forge ⚒️', role: 'Engineering', line: 'Automation & system building', dept: 'Engineering' },
+	{ name: 'Weaver 🕸️', role: 'Content', line: 'Blog content creation at scale', dept: 'Content Studio' },
+	{ name: 'Spark ✨', role: 'Content', line: 'Social posting & engagement', dept: 'Content Studio' },
+	{ name: 'Leo 🦁', role: 'Communications', line: 'Email automation & outreach', dept: 'Communications' },
+	{ name: 'Scout 🕵️', role: 'Growth', line: 'Lead generation & qualification', dept: 'Growth' },
+	{ name: 'Pulse 📊', role: 'Intelligence', line: 'Analytics & business metrics', dept: 'Intelligence' },
 ];
 ---
 
 <section class="section" id="solution">
 	<div class="container">
 		<div class="solution-header">
-			<h2>The AI Village</h2>
-			<p>6 specialized agents. 1 coordinated system. Zero human bottleneck.</p>
+			<h2>The Village</h2>
+			<p>24+ specialized agents across 2 villages. 1 coordinated system. Zero human bottleneck.</p>
+		<div class="village-badges">
+			<span class="village-badge">🌍 Mac Mini Village — 11 Agents</span>
+			<span class="village-badge">⚡ Droplet Village — 13 Agents</span>
+		</div>
 		</div>
 
 		<div class="agents-grid">
 			{agents.map(a => (
 				<div class="agent-card">
-					<div class="agent-icon">{a.icon}</div>
 					<div class="agent-name">{a.name}</div>
 					<div class="agent-role">{a.role}</div>
 					<div class="agent-line">{a.line}</div>
+					<div class="agent-dept">{a.dept}</div>
 				</div>
 			))}
 		</div>
 
-		<p class="fleet-quote">"1 practice = smart. 100 = brilliant. 1,000 = unstoppable."</p>
+		<p class="fleet-quote">"1 client = protected. 100 = fortified. 1,000 = unstoppable."</p>
 	</div>
 </section>
 
@@ -39,6 +49,23 @@ const agents = [
 	.solution-header h2 {
 		letter-spacing: -1.5px;
 		margin-bottom: 12px;
+	}
+	.village-badges {
+		display: flex;
+		gap: 16px;
+		justify-content: center;
+		margin-top: 16px;
+		flex-wrap: wrap;
+	}
+	.village-badge {
+		display: inline-block;
+		padding: 8px 20px;
+		border-radius: 24px;
+		font-size: 13px;
+		font-weight: 600;
+		background: rgba(76, 201, 240, 0.1);
+		border: 1px solid rgba(76, 201, 240, 0.3);
+		color: #4cc9f0;
 	}
 	.solution-header p {
 		font-size: 1.125rem;
@@ -85,6 +112,13 @@ const agents = [
 		font-size: 14px;
 		color: var(--text-secondary);
 		line-height: 1.5;
+	}
+	.agent-dept {
+		font-size: 11px;
+		color: rgba(255,255,255,0.35);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-top: 6px;
 	}
 	.fleet-quote {
 		text-align: center;

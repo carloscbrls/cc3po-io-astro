@@ -1,16 +1,17 @@
 ---
 const stats = [
-	{ num: '3–5x', label: 'faster', source: 'Microsoft Research' },
-	{ num: '91.2%', label: 'accuracy vs 78.3% single agent (SWE-bench)', source: 'SWE-bench' },
-	{ num: '100–500x', label: 'cheaper than human labor', source: 'Anthropic + BLS' },
-	{ num: '200–400%', label: 'ROI within 18 months', source: 'Deloitte' },
+	{ num: '330+', label: 'global edge locations', source: 'Cloudflare Network' },
+	{ num: '50ms', label: 'avg response time worldwide', source: 'Edge deployment' },
+	{ num: '0', label: 'cold starts — ever', source: 'Workers runtime' },
+	{ num: '$0/mo', label: 'infrastructure cost at launch', source: 'Workers Free plan' },
 ];
 ---
 
 <section class="section" id="research">
 	<div class="container">
 		<div class="tech-header">
-			<h2>Why Multi-Agent Wins</h2>
+			<h2>Edge-Deployed. Globally Fast.</h2>
+			<p style="color:var(--text-secondary);max-width:600px;margin:0 auto">Our scanner and monitoring infrastructure runs on Cloudflare Workers — not a single server in a single rack. Every scan, every check, every alert happens at the edge.</p>
 		</div>
 		<div class="tech-grid">
 			{stats.map(s => (
