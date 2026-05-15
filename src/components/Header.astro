@@ -1,9 +1,9 @@
 ---
 const navItems = [
-	{ label: 'Platform', href: '#platform' },
-	{ label: 'Products', href: '#products' },
-	{ label: 'Research', href: '#research' },
-	{ label: 'About', href: '#about' },
+	{ label: 'Platform', href: '/#platform' },
+	{ label: 'Products', href: '/#products' },
+	{ label: 'Research', href: '/#research' },
+	{ label: 'About', href: '/#about' },
 ];
 ---
 
@@ -20,7 +20,7 @@ const navItems = [
 				))}
 			</div>
 
-			<a href="#invest" class="btn btn-primary nav-cta">Request Investor Deck</a>
+			<a href="/#invest" class="btn btn-primary nav-cta">Request Investor Deck</a>
 
 			<button class="mobile-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
 				<span></span>
@@ -35,7 +35,7 @@ const navItems = [
 	{navItems.map(item => (
 		<a href={item.href} class="mobile-nav-link">{item.label}</a>
 	))}
-	<a href="#invest" class="mobile-nav-cta">Request Investor Deck</a>
+	<a href="/#invest" class="mobile-nav-cta">Request Investor Deck</a>
 </div>
 
 <style>
