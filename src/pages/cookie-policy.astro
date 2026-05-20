@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Cookie Policy | CC3PO">
+  <Header />
+  <main class="legal-page">
+    <div class="container">
+      <h1>Cookie Policy</h1>
+      <p class="last-updated">Last Updated: May 20, 2026</p>
+
+      <div class="content">
+        <p>This Cookie Policy explains how <strong>CC3PO LLC</strong> ("CC3PO", "we", "us", or "our") uses cookies and similar technologies when you visit our website at <a href="https://cc3po.com">cc3po.com</a>.</p>
+
+        <h2>1. What Are Cookies?</h2>
+        <p>Cookies are small text files placed on your device when you visit our website. They help us provide you with a better experience by remembering your preferences, understanding how you use our site, and enabling certain functionality.</p>
+
+        <h2>2. Types of Cookies We Use</p>
+
+        <h3>Essential Cookies</h3>
+        <p>Required for the website to function properly. These cannot be disabled.</p>
+        <ul>
+          <li><strong>Session cookies</strong> — Maintain your session state while browsing</li>
+          <li><strong>Security cookies</strong> — Protect against CSRF and other security threats</li>
+          <li><strong>Cloudflare cookies</strong> — Performance and security (e.g., <code>__cf_bm</code>, <code>cf_clearance</code>)</li>
+        </ul>
+
+        <h3>Analytics Cookies</h3>
+        <p>Help us understand how visitors interact with our website. These are set only with your consent.</p>
+        <ul>
+          <li><strong>Plausible Analytics</strong> — Privacy-focused, no personal data collected. We use Plausible which does not use cookies and is <a href="https://plausible.io/privacy-focused-web-analytics" rel="noopener">GDPR-compliant without consent</a>.</li>
+        </ul>
+
+        <h3>Functional Cookies</h3>
+        <p>Enable enhanced functionality and personalization.</p>
+        <ul>
+          <li><strong>Preference cookies</strong> — Remember your settings (dark mode, language, etc.)</li>
+          <li><strong>Cloudflare Turnstile</strong> — Bot protection on forms (<code>cf_turnstile</code>)</li>
+        </ul>
+
+        <h2>3. Third-Party Services</h2>
+        <p>We use the following third-party services that may set their own cookies:</p>
+        <ul>
+          <li><strong>Cloudflare</strong> — Security, performance, and bot protection</li>
+          <li><strong>Stripe</strong> — Payment processing (only active during checkout)</li>
+          <li><strong>Plausible Analytics</strong> — Privacy-focused web analytics (no cookies used)</li>
+        </ul>
+
+        <h2>4. Managing Cookies</h2>
+        <p>You can control and manage cookies through your browser settings. Most browsers allow you to:</p>
+        <ul>
+          <li>View what cookies are stored on your device</li>
+          <li>Delete some or all cookies</li>
+          <li>Block cookies from specific sites or all sites</li>
+          <li>Block third-party cookies while allowing first-party cookies</li>
+        </ul>
+        <p>Please note that blocking essential cookies may affect the functionality of our website.</p>
+
+        <h2>5. Do Not Track</h2>
+        <p>We honor Do Not Track (DNT) browser settings. When DNT is enabled, we limit our analytics collection accordingly.</p>
+
+        <h2>6. Changes to This Policy</h2>
+        <p>We may update this Cookie Policy from time to time. Material changes will be communicated through a notice on our website. Your continued use of our website after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>7. Contact Us</h2>
+        <p>If you have questions about this Cookie Policy, please contact us:</p>
+        <ul>
+          <li>Email: <a href="mailto:legal@cc3po.com">legal@cc3po.com</a></li>
+          <li>Phone: <a href="tel:+12097011137">(209) 701-1137</a></li>
+          <li>Address: 16299 Adobe Way, Lathrop, CA 95330</li>
+        </ul>
+
+        <h2>8. Related Policies</h2>
+        <ul>
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="/terms/">Terms of Service</a></li>
+          <li><a href="/sms-consent/">SMS Consent &amp; Disclosure</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 80px 0 60px;
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .last-updated {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .content h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  .content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  .content p {
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .content ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  .content li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .content a {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+  }
+  .content code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+</style>
